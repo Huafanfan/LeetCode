@@ -29,10 +29,12 @@ public class RemoveDuplicates0026 {
     	
 		return cur_index;   
     }
+
     /*
      * 时间复杂度：O(n)，假设数组的长度是 n，那么 i 和 j 分别最多遍历 n 步。
      * 空间复杂度：O(1)。
      */
+
     public static int removeDuplicates_2(int[] nums) {
         if (nums.length==0) {
 			return 0;
