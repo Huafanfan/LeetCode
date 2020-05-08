@@ -146,7 +146,6 @@ public class MajorityElement0169 {
             }
             count += (num == candidate) ? 1 : -1;
         }
-
         return candidate;
     }
 
