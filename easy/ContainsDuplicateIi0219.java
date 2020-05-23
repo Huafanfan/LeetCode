@@ -1,4 +1,4 @@
-package com.huafanfan;
+package com.huafanfan.easy;
 
 import java.util.HashMap;
 import java.util.HashSet;
