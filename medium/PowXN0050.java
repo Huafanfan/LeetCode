@@ -39,16 +39,4 @@ public class PowXN0050 {
         long N = n;
         return N >= 0 ? quickMul1(x, N) : 1.0 / quickMul1(x, N);
     }
-
-    public static void main(String[] args) {
-        System.out.println(isDigit("12312SS3123"));
-    }
-
-    private static boolean isDigit(String string) {
-        if (string == null) {
-            return false;
-        }
-        Pattern pattern = Pattern.compile("^-?\\d+(\\.\\d+)?$");
-        return pattern.matcher(string).matches();
-    }
 }
