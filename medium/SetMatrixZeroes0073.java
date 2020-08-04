@@ -6,9 +6,6 @@ package medium;
  * @date 2020/8/4 16:10
  */
 public class SetMatrixZeroes0073 {
-    public static void main(String[] args) {
-
-    }
     public void setZeroes(int[][] matrix) {
         Boolean isCol = false;
         int R = matrix.length;
