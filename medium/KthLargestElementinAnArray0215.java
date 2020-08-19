@@ -54,6 +54,12 @@ public class KthLargestElementinAnArray0215 {
         a[j] = temp;
     }
 
+    /**
+     * 堆排序
+     * @param nums
+     * @param k
+     * @return
+     */
     public int findKthLargestHeap(int[] nums, int k) {
         int heapSize = nums.length;
         buildMaxHeap(nums, heapSize);
