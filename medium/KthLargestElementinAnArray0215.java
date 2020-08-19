@@ -8,6 +8,11 @@ import java.util.Random;
  * @date 2020/8/18 17:15
  */
 public class KthLargestElementinAnArray0215 {
+    public static void main(String[] args) {
+        int[] nums = new int[]{7,3,2,8,1,5,6,4,9};
+        KthLargestElementinAnArray0215 kthLargestElementinAnArray0215 = new KthLargestElementinAnArray0215();
+        System.out.println(kthLargestElementinAnArray0215.findKthLargestHeap(nums,4));
+    }
 
     Random random = new Random();
 
@@ -25,6 +30,7 @@ public class KthLargestElementinAnArray0215 {
     }
 
     public int randomPartition(int[] a, int l, int r) {
+        //介于0(含)和n(不含)伪随机
         int i = random.nextInt(r - l + 1) + l;
         swap(a, i, r);
         return partition(a, l, r);
@@ -33,6 +39,7 @@ public class KthLargestElementinAnArray0215 {
     public int partition(int[] a, int l, int r) {
         int x = a[r], i = l - 1;
         for (int j = l; j < r; ++j) {
+            //找最小
             if (a[j] <= x) {
                 swap(a, ++i, j);
             }
@@ -45,5 +52,36 @@ public class KthLargestElementinAnArray0215 {
         int temp = a[i];
         a[i] = a[j];
         a[j] = temp;
+    }
+
+    public int findKthLargestHeap(int[] nums, int k) {
+        int heapSize = nums.length;
+        buildMaxHeap(nums, heapSize);
+        for (int i = nums.length - 1; i >= nums.length - k + 1; --i) {
+            swap(nums, 0, i);
+            --heapSize;
+            maxHeapify(nums, 0, heapSize);
+        }
+        return nums[0];
+    }
+
+    public void buildMaxHeap(int[] a, int heapSize) {
+        for (int i = heapSize / 2; i >= 0; --i) {
+            maxHeapify(a, i, heapSize);
+        }
+    }
+
+    public void maxHeapify(int[] a, int i, int heapSize) {
+        int l = i * 2 + 1, r = i * 2 + 2, largest = i;
+        if (l < heapSize && a[l] > a[largest]) {
+            largest = l;
+        }
+        if (r < heapSize && a[r] > a[largest]) {
+            largest = r;
+        }
+        if (largest != i) {
+            swap(a, i, largest);
+            maxHeapify(a, largest, heapSize);
+        }
     }
 }
