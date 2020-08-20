@@ -25,6 +25,8 @@ public class ProductofArrayExceptSelf0238 {
     public int[] productExceptSelf2(int[] nums) {
         int n=nums.length;
         int[] result = new int[n];
+        // answer[i] 表示索引 i 左侧所有元素的乘积
+        // 因为索引为 '0' 的元素左侧没有元素， 所以 answer[0] = 1
         result[0] = 1;
         for (int i=1; i<n; i++){
             result[i] = nums[i-1] * result[i-1];
