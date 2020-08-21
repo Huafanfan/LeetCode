@@ -78,7 +78,7 @@ public class PerfectSquares0279 {
         int level = 0;
         while (queue.size() > 0) {
             level += 1;
-            Set<Integer> next_queue = new HashSet<Integer>();
+            Set<Integer> nextQueue = new HashSet<Integer>();
 
             for (Integer remainder : queue) {
                 for (Integer square : squareNums) {
@@ -87,11 +87,11 @@ public class PerfectSquares0279 {
                     } else if (remainder < square) {
                         break;
                     } else {
-                        next_queue.add(remainder - square);
+                        nextQueue.add(remainder - square);
                     }
                 }
             }
-            queue = next_queue;
+            queue = nextQueue;
         }
         return level;
     }
