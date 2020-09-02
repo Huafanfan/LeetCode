@@ -19,6 +19,8 @@ public class AddTwoNumbersii0445 {
     public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
         Deque<Integer> numList1 = new ArrayDeque<>();
         Deque<Integer> numList2 = new ArrayDeque<>();
+       ListNode result = new ListNode(-1);
+       result.next = null;
         while (l1!=null){
             numList1.addLast(l1.val);
             l1 = l1.next;
@@ -27,9 +29,16 @@ public class AddTwoNumbersii0445 {
             numList2.addLast(l2.val);
             l2 = l2.next;
         }
-        while (!numList1.isEmpty()||!numList2.isEmpty()){
+        int weight = 0;
+        while (!numList1.isEmpty()||!numList2.isEmpty()||weight!=0){
             int num1 = numList1.isEmpty()?0:numList1.removeLast();
             int num2 = numList2.isEmpty()?0:numList2.removeLast();
+            int num3 = (num1+num2+weight)%10;
+            weight = (num1+num2+weight)/10;
+            ListNode temp = new ListNode(num3);
+            temp.next = result.next;
+            result.next = temp;
         }
+        return result.next;
     }
 }
