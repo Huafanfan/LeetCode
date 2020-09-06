@@ -1,6 +1,5 @@
 package com.huafanfan.easy;
 
-import org.jetbrains.annotations.NotNull;
 
 /**
  * @author alex
@@ -82,7 +81,7 @@ public class MaxSubArray0053 {
 	 * 空间复杂度：O(1)，只使用了常数空间。
 	 */
 
-	public static int maxSubArray(int @NotNull [] nums) {
+	public static int maxSubArray(int [] nums) {
 
 		int length = nums.length;
 		int maxSum = Integer.MIN_VALUE;
