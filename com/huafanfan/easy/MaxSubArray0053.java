@@ -1,4 +1,4 @@
-package com.huafanfan.easy;
+package easy;
 
 
 /**
@@ -81,7 +81,7 @@ public class MaxSubArray0053 {
 	 * 空间复杂度：O(1)，只使用了常数空间。
 	 */
 
-	public static int maxSubArray(int [] nums) {
+	public static int maxSubArray(int[] nums) {
 
 		int length = nums.length;
 		int maxSum = Integer.MIN_VALUE;
