@@ -11,6 +11,7 @@ public class CombinationSum0039 {
     public List<List<Integer>> combinationSum(int[] candidates, int target) {
         List<List<Integer>> res = new ArrayList<>();
         int len = candidates.length;
+        //排序为了剪枝
         Arrays.sort(candidates);
 
         dfs(candidates, len, target, 0, new ArrayDeque<>(), res);
@@ -27,6 +28,7 @@ public class CombinationSum0039 {
                 break;
             }
             path.addLast(candidates[i]);
+            //这里的start==i,因为当前元素可以重复使用
             dfs(candidates, len, residue-candidates[i], i, path, res);
             path.removeLast();
         }
