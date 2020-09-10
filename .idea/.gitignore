@@ -7,5 +7,5 @@
 # Editor-based HTTP Client requests
 /httpRequests/
 /out/
-.idea
-LeetCodes.iml
+/.idea
+/LeetCodes.iml
