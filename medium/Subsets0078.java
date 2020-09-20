@@ -35,49 +35,49 @@ public class Subsets0078 {
         return output;
     }
 
-    List<List<Integer>> output = new ArrayList();
-    int n, k;
-    public void backtrack(int first, ArrayList<Integer> curr, int[] nums) {
-        // if the combination is done
-        if (curr.size() == k) {
-            output.add(new ArrayList(curr));
+    List<Integer> path = new ArrayList<Integer>();
+    List<List<Integer>> ans = new ArrayList<List<Integer>>();
+    public void dfs(int first, int[] nums) {
+        if (first == nums.length){
+            ans.add(new ArrayList<>(path));
             return;
         }
-
-        for (int i = first; i < n; ++i) {
-            // add i into the current combination
-            curr.add(nums[i]);
-            // use next integers to complete the combination
-            backtrack(i + 1, curr, nums);
-            // backtrack
-            curr.remove(curr.size() - 1);
-        }
+        path.add(nums[first]);
+        dfs(first+1, nums);
+        path.remove(path.size()-1);
+        dfs(first+1, nums);
     }
 
     public List<List<Integer>> subsets2(int[] nums) {
-        n = nums.length;
-        for (k = 0; k < n + 1; ++k) {
-            backtrack(0, new ArrayList<Integer>(), nums);
-        }
-        return output;
+        dfs(0, nums);
+        return ans;
     }
 
     public static List<List<Integer>> subsets3(int[] nums) {
         List<List<Integer>> output = new ArrayList();
         int n = nums.length;
-
-        for (int i = (int)Math.pow(2, n); i < (int)Math.pow(2, n + 1); ++i) {
-            // generate bitmask, from 0..00 to 1..11
-            String bitmask = Integer.toBinaryString(i).substring(1);
-
+        for (int mask = 0; mask < (1<<n); mask++){
             List<Integer> curr = new ArrayList();
-            for (int j = 0; j < n; ++j) {
-                if (bitmask.charAt(j) == '1') {
-                    curr.add(nums[j]);
+            for (int i=0; i<n; i++){
+                if ((mask & (1<<i)) != 0){
+                    curr.add(nums[i]);
                 }
             }
             output.add(curr);
         }
         return output;
+        //for (int i = (int)Math.pow(2, n); i < (int)Math.pow(2, n + 1); ++i) {
+        //    // generate bitmask, from 0..00 to 1..11
+        //    String bitmask = Integer.toBinaryString(i).substring(1);
+        //
+        //    List<Integer> curr = new ArrayList();
+        //    for (int j = 0; j < n; ++j) {
+        //        if (bitmask.charAt(j) == '1') {
+        //            curr.add(nums[j]);
+        //        }
+        //    }
+        //    output.add(curr);
+        //}
+        //return output;
     }
 }

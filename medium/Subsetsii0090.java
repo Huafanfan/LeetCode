@@ -35,11 +35,7 @@ public class Subsetsii0090 {
     List<List<Integer>> output = new ArrayList();
     int n, k;
     public  void backtrack(int first, ArrayList<Integer> curr, int[] nums) {
-        if (curr.size() == k) {
-            output.add(new ArrayList(curr));
-            return;
-        }
-
+        output.add(new ArrayList(curr));
         for (int i = first; i < n; ++i) {
             if (i > first && nums[i] == nums[i - 1]) {
                 continue;
@@ -53,9 +49,7 @@ public class Subsetsii0090 {
     public  List<List<Integer>> subsets2(int[] nums) {
         n = nums.length;
         Arrays.sort(nums);
-        for (k = 0; k < n + 1; ++k) {
-            backtrack(0, new ArrayList<Integer>(), nums);
-        }
+        backtrack(0, new ArrayList<Integer>(), nums);
         return output;
     }
 }
