@@ -41,7 +41,7 @@ public class CoinChange0322 {
         if (amount < 1) {
             return 0;
         }
-        return coinChange(coins, amount, new int[amount]);
+        return coinChange(coins, amount, new int[amount + 1]);
     }
 
     private int coinChange(int[] coins, int rem, int[] count) {
@@ -52,8 +52,8 @@ public class CoinChange0322 {
             return 0;
         }
         //当前剩余金额的解
-        if (count[rem - 1] != 0) {
-            return count[rem - 1];
+        if (count[rem] != 0) {
+            return count[rem];
         }
         int min = Integer.MAX_VALUE;
         for (int coin : coins) {
@@ -62,10 +62,10 @@ public class CoinChange0322 {
                 min = 1 + res;
             }
         }
-        // count[rem - 1]存储着给定金额amount的解
+        // count[rem]存储着给定金额amount的解
         // 若为Integer.MAX_VALUE则该情况无解
-        count[rem - 1] = (min == Integer.MAX_VALUE) ? -1 : min;
-        return count[rem - 1];
+        count[rem] = (min == Integer.MAX_VALUE) ? -1 : min;
+        return count[rem];
     }
 
     public int coinChangeDPFromLastToTop(int[] coins, int amount) {
