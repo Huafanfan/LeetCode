@@ -62,6 +62,11 @@ public class BinaryTreeInorderTraversal0094 {
         return res;
     }
 
+    /**
+     * Morris 遍历
+     * @param root
+     * @return
+     */
     public List < Integer > inorderTraversal3(TreeNode root) {
         List < Integer > res = new ArrayList < > ();
         TreeNode curr = root;
@@ -69,18 +74,17 @@ public class BinaryTreeInorderTraversal0094 {
         while (curr != null) {
             if (curr.left == null) {
                 res.add(curr.val);
-                // move to next right node
                 curr = curr.right;
-            } else { // has a left subtree
+            } else {
                 pre = curr.left;
-                // find rightmost
                 while (pre.right != null) {
                     pre = pre.right;
                 }
-                pre.right = curr; // put cur after the pre node
-                TreeNode temp = curr; // store cur node
-                curr = curr.left; // move cur to the top of the new tree
-                temp.left = null; // original cur left be null, avoid infinite loops
+
+                pre.right = curr;
+                TreeNode temp = curr;
+                curr = curr.left;
+                temp.left = null;
             }
         }
         return res;

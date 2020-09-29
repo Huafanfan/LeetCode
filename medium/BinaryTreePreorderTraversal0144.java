@@ -36,31 +36,37 @@ public class BinaryTreePreorderTraversal0144 {
         return result;
     }
 
+    /**
+     * Morris 遍历
+     * @param root
+     * @return
+     */
     public List<Integer> preorderTraversal2(TreeNode root) {
-        LinkedList<Integer> output = new LinkedList<>();
-        TreeNode node = root;
-        while (node != null) {
-            if (node.left == null) {
-                output.add(node.val);
-                node = node.right;
+        LinkedList<Integer> res = new LinkedList<>();
+        TreeNode curr = root;
+        TreeNode pre = null;
+        while (curr != null) {
+            if (curr.left == null) {
+                res.add(curr.val);
+                curr = curr.right;
             }
             else {
-                TreeNode predecessor = node.left;
-                while ((predecessor.right != null) && (predecessor.right != node)) {
-                    predecessor = predecessor.right;
+                pre = curr.left;
+                while ((pre.right != null) && (pre.right != curr)) {
+                    pre = pre.right;
                 }
 
-                if (predecessor.right == null) {
-                    output.add(node.val);
-                    predecessor.right = node;
-                    node = node.left;
+                if (pre.right == null) {
+                    res.add(curr.val);
+                    pre.right = curr;
+                    curr = curr.left;
                 }
                 else{
-                    predecessor.right = null;
-                    node = node.right;
+                    pre.right = null;
+                    curr = curr.right;
                 }
             }
         }
-        return output;
+        return res;
     }
 }
