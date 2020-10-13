@@ -23,20 +23,6 @@ public class SwapNodesInPairs0024 {
         }
         ListNode dommy = new ListNode(0);
         dommy.next = head;
-        //ListNode first = head.next;
-        //ListNode second = dommy;
-        //ListNode temp = new ListNode(-1);
-        //while (first!=null){
-        //    temp = second.next;
-        //    second.next=first;
-        //    temp.next=first.next;
-        //    first.next=temp;
-        //    if (temp.next==null){
-        //        return dommy.next;
-        //    }
-        //    first=temp.next.next;
-        //    second=temp;
-        //}
         ListNode pre = dommy;
         ListNode first = head.next;
         ListNode second = head;
