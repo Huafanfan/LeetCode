@@ -16,13 +16,13 @@ public class RemoveNthNodeFromEndofList0019 {
         dummy.next = head;
         ListNode first = dummy;
         ListNode second = dummy;
-        //while (n>=0){
-        //    first = first.next;
-        //    n--;
-        //}
-        for (int i = 1; i <= n + 1; i++) {
+        while (n>=0){
             first = first.next;
+            n--;
         }
+        //for (int i = 1; i <= n + 1; i++) {
+        //    first = first.next;
+        //}
         while (first!=null){
             second=second.next;
             first=first.next;
