@@ -46,26 +46,25 @@ public class BinaryTreePreorderTraversal0144 {
         TreeNode curr = root;
         TreeNode pre = null;
         while (curr != null) {
-            if (curr.left == null) {
-                res.add(curr.val);
-                curr = curr.right;
-            }
-            else {
-                pre = curr.left;
+            pre = curr.left;
+            if (pre != null) {
                 while ((pre.right != null) && (pre.right != curr)) {
                     pre = pre.right;
                 }
-
                 if (pre.right == null) {
                     res.add(curr.val);
                     pre.right = curr;
                     curr = curr.left;
+                    continue;
                 }
                 else{
                     pre.right = null;
-                    curr = curr.right;
                 }
             }
+            else {
+                res.add(curr.val);
+            }
+            curr = curr.right;
         }
         return res;
     }
