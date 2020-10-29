@@ -1,9 +1,6 @@
 package medium;
 
-import java.util.ArrayDeque;
-import java.util.ArrayList;
-import java.util.Deque;
-import java.util.List;
+import java.util.*;
 
 /**
  * @author Alex
@@ -17,13 +14,13 @@ public class SumRootToLeafNumbers0129 {
         TreeNode right;
         TreeNode(int x) { val = x; }
     }
-    public int sumNumbers1(TreeNode root) {
+    public int sumNumbersDfs(TreeNode root) {
         List<List<Integer>> result = new ArrayList<>();
         if (root == null){
             return 0;
         }
         Deque<Integer> path = new ArrayDeque<>();
-        pathSum1(root,result,path);
+        pathSum(root,result,path);
         int sum = 0;
         for (List<Integer> tmp : result){
             int count = 0;
@@ -34,7 +31,7 @@ public class SumRootToLeafNumbers0129 {
         }
         return sum;
     }
-    public void pathSum1(TreeNode node, List<List<Integer>> result, Deque<Integer> path) {
+    public void pathSum(TreeNode node, List<List<Integer>> result, Deque<Integer> path) {
         if (node == null) {
             return;
         }
@@ -44,23 +41,54 @@ public class SumRootToLeafNumbers0129 {
             path.removeLast();
             return;
         }
-        pathSum1(node.left, result, path);
-        pathSum1(node.right, result, path);
+        pathSum(node.left, result, path);
+        pathSum(node.right, result, path);
         path.removeLast();
     }
 
-    public int sumNumbers(TreeNode root) {
-        return helper(root, 0);
+    public int sumNumbersDFS(TreeNode root) {
+        return dfs(root, 0);
     }
 
-    public int helper(TreeNode root, int i){
+    public int dfs(TreeNode root, int prevSum){
         if (root == null) {
             return 0;
         }
-        int temp = i * 10 + root.val;
+        int temp = prevSum * 10 + root.val;
         if (root.left == null && root.right == null) {
             return temp;
         }
-        return helper(root.left, temp) + helper(root.right, temp);
+        return dfs(root.left, temp) + dfs(root.right, temp);
+    }
+
+    public int sumNumbersBFS(TreeNode root) {
+        if (root == null){
+            return 0;
+        }
+        Queue<TreeNode> nodes = new LinkedList<>();
+        Queue<Integer> nums = new LinkedList<>();
+        nodes.offer(root);
+        nums.offer(root.val);
+        int sum = 0;
+        while (!nodes.isEmpty()){
+            TreeNode node = nodes.poll();
+            int num = nums.poll();
+            TreeNode left = node.left;
+            TreeNode right = node.right;
+            if (left == null && right == null){
+                sum += num;
+            }
+            else {
+                if (left != null){
+                    nodes.offer(left);
+                    nums.offer(num * 10 + left.val);
+                }
+                if (right != null){
+                    nodes.offer(right);
+                    nums.offer(num * 10 + right.val);
+                }
+            }
+        }
+        return sum;
     }
 }
