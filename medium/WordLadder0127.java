@@ -65,4 +65,73 @@ public class WordLadder0127 {
             edge.add(new ArrayList<Integer>());
         }
     }
+
+    public int ladderLengthTwoWay(String beginWord, String endWord, List<String> wordList) {
+        for (String word : wordList) {
+            addEdge(word);
+        }
+        addEdge(beginWord);
+        if (!wordId.containsKey(endWord)) {
+            return 0;
+        }
+
+        int[] disBegin = new int[nodeNum];
+        Arrays.fill(disBegin, Integer.MAX_VALUE);
+        int beginId = wordId.get(beginWord);
+        disBegin[beginId] = 0;
+        Queue<Integer> queBegin = new LinkedList<Integer>();
+        queBegin.offer(beginId);
+
+        int[] disEnd = new int[nodeNum];
+        Arrays.fill(disEnd, Integer.MAX_VALUE);
+        int endId = wordId.get(endWord);
+        disEnd[endId] = 0;
+        Queue<Integer> queEnd = new LinkedList<Integer>();
+        queEnd.offer(endId);
+
+        while (!queBegin.isEmpty() && !queEnd.isEmpty()) {
+            int queBeginSize = queBegin.size();
+            for (int i = 0; i < queBeginSize; ++i) {
+                int nodeBegin = queBegin.poll();
+                if (disEnd[nodeBegin] != Integer.MAX_VALUE) {
+                    return (disBegin[nodeBegin] + disEnd[nodeBegin]) / 2 + 1;
+                }
+                for (int it : edge.get(nodeBegin)) {
+                    if (disBegin[it] == Integer.MAX_VALUE) {
+                        disBegin[it] = disBegin[nodeBegin] + 1;
+                        queBegin.offer(it);
+                    }
+                }
+            }
+
+            int queEndSize = queEnd.size();
+            for (int i = 0; i < queEndSize; ++i) {
+                int nodeEnd = queEnd.poll();
+                if (disBegin[nodeEnd] != Integer.MAX_VALUE) {
+                    return (disBegin[nodeEnd] + disEnd[nodeEnd]) / 2 + 1;
+                }
+                for (int it : edge.get(nodeEnd)) {
+                    if (disEnd[it] == Integer.MAX_VALUE) {
+                        disEnd[it] = disEnd[nodeEnd] + 1;
+                        queEnd.offer(it);
+                    }
+                }
+            }
+        }
+        return 0;
+    }
+
+    public static void main(String[] args) {
+        String beginWord = "hit";
+        String endWord = "cog";
+        List<String> wordList = new ArrayList<>();
+        wordList.add("hot");
+        wordList.add("dot");
+        wordList.add("dog");
+        wordList.add("lot");
+        wordList.add("log");
+        wordList.add("cog");
+        WordLadder0127 wordLadder0127 = new WordLadder0127();
+        System.out.println(wordLadder0127.ladderLength(beginWord, endWord, wordList));
+    }
 }
