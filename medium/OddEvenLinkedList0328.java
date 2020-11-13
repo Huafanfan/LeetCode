@@ -13,7 +13,7 @@ public class OddEvenLinkedList0328 {
         ListNode(int val) { this.val = val; }
         ListNode(int val, ListNode next) { this.val = val; this.next = next; }
     }
-    public ListNode oddEvenList(ListNode head) {
+    public ListNode oddEvenList1(ListNode head) {
         ListNode oddHead = new ListNode();
         ListNode evenHead = new ListNode();
         ListNode oddTail = oddHead;
@@ -29,10 +29,26 @@ public class OddEvenLinkedList0328 {
                 evenTail = evenTail.next;
             }
             head = head.next;
-            isOdd = (isOdd+1)%2;
+            isOdd = (isOdd+1) & 1;
         }
         oddTail.next = evenHead.next;
         evenTail.next=null;
         return oddHead.next;
+    }
+
+    public ListNode oddEvenList2(ListNode head) {
+        if (head == null) {
+            return null;
+        }
+        ListNode evenHead = head.next;
+        ListNode odd = head, even = evenHead;
+        while (even != null && even.next != null) {
+            odd.next = even.next;
+            odd = odd.next;
+            even.next = odd.next;
+            even = even.next;
+        }
+        odd.next = evenHead;
+        return head;
     }
 }
