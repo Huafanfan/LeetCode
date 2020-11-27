@@ -14,12 +14,13 @@ public class FourSumii0454 {
         int result = 0;
         for (int k : A) {
             for (int i : B) {
-                int sum = k + i;
-                if(map.containsKey(sum)) {
-                    map.put(sum,map.get(sum)+1);
-                } else {
-                    map.put(sum,1);
-                }
+                //int sum = k + i;
+                //if(map.containsKey(sum)) {
+                //    map.put(sum,map.get(sum)+1);
+                //} else {
+                //    map.put(sum,1);
+                //}
+                map.put(k + i, map.getOrDefault(k + i, 0) + 1);
             }
         }
         for (int i : C){
