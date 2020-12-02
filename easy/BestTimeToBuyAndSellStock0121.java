@@ -1,5 +1,9 @@
 package easy;
 
+import java.util.ArrayDeque;
+import java.util.Deque;
+import java.util.LinkedList;
+
 /**
  * @author Alex
  * @version 1.0
@@ -37,15 +41,42 @@ public class BestTimeToBuyAndSellStock0121 {
      * @return
      */
     public static int maxProfitOnce(int[] prices) {
-        int minprice = Integer.MAX_VALUE;
-        int maxprofit = 0;
-        for (int price : prices) {
-            if (price < minprice) {
-                minprice = price;
-            } else if (price - minprice > maxprofit) {
-                maxprofit = price - minprice;
+        if (prices.length < 1) {
+            return 0;
+        }
+        int minPrice = prices[0];
+        int maxProfit = 0;
+        for (int i=1; i<prices.length; i++) {
+            if ((prices[i]-minPrice)>maxProfit){
+                maxProfit = prices[i] - minPrice;
+            }
+            if (prices[i] < minPrice){
+                minPrice = prices[i];
             }
         }
-        return maxprofit;
+        return maxProfit;
+    }
+
+    public int maxProfitDeque(int[] prices) {
+        if (prices.length == 0){
+            return 0;
+        }
+        Deque<Integer> stack = new ArrayDeque<>();
+        int res = 0;
+        stack.offerLast(prices[0]);
+        for (int i=1; i<prices.length; i++){
+            if (prices[i] <= stack.peekLast()) {
+                int index = stack.size() - 1;
+                for (; index >= 0; index--) {
+                    if (stack.peekLast() < prices[i]) {
+                        break;
+                    }
+                    stack.pollLast();
+                }
+            }
+            stack.offerLast(prices[i]);
+            res = Math.max(res, stack.peekLast() - stack.peekFirst());
+        }
+        return res;
     }
 }

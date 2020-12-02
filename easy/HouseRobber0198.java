@@ -1,4 +1,6 @@
-package com.huafanfan.easy;
+package easy;
+
+import com.sun.xml.internal.bind.v2.model.core.ID;
 
 /**
  * @author Alex
@@ -34,5 +36,19 @@ public class HouseRobber0198 {
             ans[i] = Math.max(nums[i] + ans[i - 2], ans[i - 1]);
         }
         return ans[ans.length - 1];
+    }
+
+    public int rob3(int[] nums) {
+        int a=0;
+        int b=0;
+        for (int i=0; i<nums.length; i++) {
+            if (i % 2 == 0){
+                a = Math.max(a+nums[i], b);
+            }
+            else {
+                b = Math.max(b+nums[i], a);
+            }
+        }
+        return Math.max(a, b);
     }
 }
