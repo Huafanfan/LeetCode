@@ -1,4 +1,4 @@
-package medium;
+package medium.dp;
 
 
 /**
@@ -32,4 +32,6 @@ public class UniqueBinarySearchTrees0096 {
         }
         return (int) C;
     }
+
+
 }

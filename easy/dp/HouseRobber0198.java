@@ -1,4 +1,4 @@
-package easy;
+package easy.dp;
 
 import com.sun.xml.internal.bind.v2.model.core.ID;
 
