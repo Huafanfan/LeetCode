@@ -22,19 +22,13 @@ public class MinCostClimbingStairs0746 {
         return Math.min(dp[cost.length-1], dp[cost.length-2]);
     }
     public int minCostClimbingStairs2(int[] cost) {
-        int cur = 0, last = 0;
-        for (int i=2; i<cost.length+1; i++) {
-            if (last+cost[i-1] > cur+cost[i-2]){
-                int tempCur = cur;
-                cur = last;
-                last = tempCur + cost[i-2];
-            }
-            else {
-                cur = last;
-                last = last + cost[i-1];
-            }
+        int cur = cost[1], last = cost[0];
+        for (int i=2; i<cost.length; i++) {
+            int temp = cur;
+            cur = cost[i] + Math.min(last, cur);
+            last = temp;
         }
-        return last;
+        return Math.min(last, cur);
     }
 
     public static void main(String[] args) {
