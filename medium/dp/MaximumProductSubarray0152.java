@@ -1,4 +1,4 @@
-package medium;
+package medium.dp;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -33,4 +33,24 @@ public class MaximumProductSubarray0152 {
         }
         return ans;
     }
+
+    public int maxProduct3(int[] nums) {
+        int[][] dp = new int[nums.length+1][2];
+        dp[0][0] = 1;
+        dp[0][1] = 1;
+        int max = nums[0];
+        for (int i=0; i<nums.length; i++){
+            dp[i+1][0] = Math.max(nums[i],Math.max(dp[i][0]*nums[i], dp[i][1]*nums[i]));
+            dp[i+1][1] = Math.min(nums[i],Math.min(dp[i][0]*nums[i], dp[i][1]*nums[i]));
+            max = Math.max(max,Math.max(dp[i+1][0], dp[i+1][1]));
+        }
+        return max;
+    }
+
+    public static void main(String[] args) {
+        MaximumProductSubarray0152 maximumProductSubarray0152 = new MaximumProductSubarray0152();
+        int[] nums = new int[]{2,3,-2,4};
+        System.out.println(maximumProductSubarray0152.maxProduct3(nums));
+    }
+
 }

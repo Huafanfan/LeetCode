@@ -1,4 +1,4 @@
-package medium;
+package medium.dp;
 
 /**
  * @author Alex
@@ -32,7 +32,7 @@ public class BestTimetoBuyandSellStockwithCooldown0309 {
         //不与f[n -1][0]比较的原因是最后一天手里还持有股票没有意义
         return Math.max(f[n - 1][1], f[n - 1][2]);
     }
-    public int maxProfitPro(int[] prices) {
+    public int maxProfit2(int[] prices) {
         if (prices.length == 0) {
             return 0;
         }
@@ -51,5 +51,38 @@ public class BestTimetoBuyandSellStockwithCooldown0309 {
         }
 
         return Math.max(f1, f2);
+    }
+
+
+    public int maxProfit3(int[] prices) {
+        if (prices.length < 2) {
+            return 0;
+        }
+        int[][] dp = new int[prices.length][2];
+        //0:buy 1:sell
+        dp[0][0] = -prices[0];
+        dp[0][1] = 0;
+        dp[1][0] = Math.max(dp[0][0], -prices[1]);
+        dp[1][1] = Math.max(dp[0][1], dp[0][0] + prices[1]);
+        for (int i=2; i<prices.length; i++) {
+            dp[i][0] = Math.max(dp[i-2][1] - prices[i], dp[i-1][0]);
+            dp[i][1] = Math.max(dp[i-1][0] + prices[i], dp[i-1][1]);
+        }
+        return dp[prices.length-1][1];
+    }
+
+    public int maxProfit4(int[] prices) {
+        if (prices.length < 2) {
+            return 0;
+        }
+        int lastSell = 0;
+        int curBuy = Math.max(-prices[0], -prices[1]);
+        int curSell = Math.max(lastSell, -prices[0] + prices[1]);
+        for (int i=2; i<prices.length; i++) {
+            curBuy = Math.max(lastSell - prices[i], curBuy);
+            lastSell = curSell;
+            curSell = Math.max(curBuy + prices[i], curSell);
+        }
+        return curSell;
     }
 }
