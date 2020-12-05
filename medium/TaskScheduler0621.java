@@ -84,6 +84,7 @@ public class TaskScheduler0621 {
         for (Map.Entry<Character, Integer> entry : entrySet) {
             int value = entry.getValue();
             if (value == maxExec) {
+
                 ++maxCount;
             }
         }
