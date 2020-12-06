@@ -1,4 +1,4 @@
-package medium;
+package medium.dp;
 
 /**
  * @author Alex
@@ -9,9 +9,9 @@ public class PartitionEqualSubsetSum0416 {
     public static void main(String[] args) {
         int[] nums = new int[]{1,5,11,5};
         PartitionEqualSubsetSum0416 partitionEqualSubsetSum0416 = new PartitionEqualSubsetSum0416();
-        System.out.println(partitionEqualSubsetSum0416.canPartition01(nums));
+        System.out.println(partitionEqualSubsetSum0416.canPartition1(nums));
     }
-    public boolean canPartition01(int[] nums) {
+    public boolean canPartition1(int[] nums) {
         int len = nums.length;
         if (len < 2) {
             return false;
@@ -56,7 +56,7 @@ public class PartitionEqualSubsetSum0416 {
         return dp[len - 1][target];
     }
 
-    public boolean canPartition02(int[] nums) {
+    public boolean canPartition2(int[] nums) {
         int len = nums.length;
         if (len < 2) {
             return false;
@@ -88,6 +88,69 @@ public class PartitionEqualSubsetSum0416 {
             }
         }
         return dp[target];
+    }
+
+    public boolean canPartition3(int[] nums) {
+        int n = nums.length;
+        if (n < 2) {
+            return false;
+        }
+        int sum = 0, maxNum = 0;
+        for (int num : nums) {
+            sum += num;
+            maxNum = Math.max(maxNum, num);
+        }
+        if (sum % 2 == 1) {
+            return false;
+        }
+        int C = sum/2;
+        if (maxNum > C){
+            return false;
+        }
+        boolean[][] dp = new boolean[n][C+1];
+        for (int i=0; i<n; i++) {
+            dp[i][0] = true;
+        }
+        dp[0][nums[0]] = true;
+        for (int i=1; i<n; i++) {
+            for (int j=1; j<=C; j++){
+                if (j >= nums[i]) {
+                    dp[i][j] = dp[i-1][j] || dp[i-1][j-nums[i]];
+                }
+                else {
+                    dp[i][j] = dp[i-1][j];
+                }
+            }
+        }
+        return dp[n-1][C];
+    }
+
+    public boolean canPartition4(int[] nums) {
+        int n = nums.length;
+        if (n < 2) {
+            return false;
+        }
+        int sum = 0, maxNum = 0;
+        for (int num : nums) {
+            sum += num;
+            maxNum = Math.max(maxNum, num);
+        }
+        if (sum % 2 == 1) {
+            return false;
+        }
+        int C = sum/2;
+        if (maxNum > C){
+            return false;
+        }
+        boolean[] dp = new boolean[C+1];
+        dp[0] = true;
+        dp[nums[0]] = true;
+        for (int i=1; i<n; i++) {
+            for (int j=C; j>=nums[i]; j--){
+                dp[j] = dp[j] || dp[j-nums[i]];
+            }
+        }
+        return dp[C];
     }
 
 }
