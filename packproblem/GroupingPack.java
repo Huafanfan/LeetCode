@@ -23,7 +23,7 @@ public class GroupingPack {
             }
             // 每组之间是01背包问题
             for(int j=V;j>=0;j--){
-                // 组内遍历
+                // 组内遍历,所有的决策中选一个，多重背包是分组背包的特殊情况
                 for(int k=0;k<S;k++){
                     if(j>=v[k]){
                         dp[j]=Math.max(dp[j],dp[j-v[k]]+w[k]);

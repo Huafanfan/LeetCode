@@ -14,11 +14,11 @@ public class MixingPack {
         Scanner sc=new Scanner(System.in);
         int N=sc.nextInt();
         int V=sc.nextInt();
-        int[] vArray=new int[N];
-        int[] wArray=new int[N];
-        int[] sArray=new int[N];
+        int[] vArray=new int[N+1];
+        int[] wArray=new int[N+1];
+        int[] sArray=new int[N+1];
         List<Thing> things=new ArrayList<>();
-        for(int i=0;i<N;i++){
+        for(int i=1;i<=N;i++){
             int v=sc.nextInt();
             vArray[i] = v;
             int w=sc.nextInt();
@@ -59,21 +59,21 @@ public class MixingPack {
 
         int[] dp1=new int[V+1];
         for (int i=1; i<=N; i++){
-            if (sArray[i-1]==-1){
-                for (int j=V; j>= vArray[i-1]; j--){
-                    dp1[j] = Math.max(dp1[j],dp1[j-vArray[i-1]] + wArray[i-1]);
+            if (sArray[i]==-1){
+                for (int j=V; j>= vArray[i]; j--){
+                    dp1[j] = Math.max(dp1[j],dp1[j-vArray[i]] + wArray[i]);
                 }
             }
-            if (sArray[i-1]==0){
-                for (int j=vArray[i-1]; j<= V; j++){
-                    dp1[j] = Math.max(dp1[j],dp1[j-vArray[i-1]] + wArray[i-1]);
+            if (sArray[i]==0){
+                for (int j=vArray[i]; j<= V; j++){
+                    dp1[j] = Math.max(dp1[j],dp1[j-vArray[i]] + wArray[i]);
                 }
             }
-            if (sArray[i-1]>0){
-                for (int j=V; j>=vArray[i-1]; j--){
-                    for (int k=0; k<=sArray[i-1]; k++){
-                        if (j >= k * vArray[i - 1]){
-                            dp1[j] = Math.max(dp1[j], dp1[j - k * vArray[i - 1]] + k*wArray[i-1]);
+            if (sArray[i]>0){
+                for (int j=V; j>=vArray[i]; j--){
+                    for (int k=0; k<=sArray[i]; k++){
+                        if (j >= k * vArray[i]){
+                            dp1[j] = Math.max(dp1[j], dp1[j - k * vArray[i]] + k*wArray[i]);
                         }
                     }
                 }

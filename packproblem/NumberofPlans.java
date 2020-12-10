@@ -13,9 +13,9 @@ public class NumberofPlans {
         int mod=1000000007;
         int N=sc.nextInt();
         int V=sc.nextInt();
-        int[] v=new int[N];
-        int[] w=new int[N];
-        for(int i=0;i<N;i++){
+        int[] v=new int[N+1];
+        int[] w=new int[N+1];
+        for(int i=1;i<=N;i++){
             v[i]=sc.nextInt();
             w[i]=sc.nextInt();
         }
@@ -24,7 +24,7 @@ public class NumberofPlans {
         for(int i=0;i<=V;i++){
             count[i]=1;
         }
-        for(int i=0;i<N;i++){
+        for(int i=1;i<=N;i++){
             for(int j=V;j>=v[i];j--){
                 int value=dp[j-v[i]]+w[i];
                 if(value>dp[j]){

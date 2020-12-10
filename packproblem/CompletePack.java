@@ -15,9 +15,9 @@ public class CompletePack {
         Scanner sc=new Scanner(System.in);
         int N=sc.nextInt();
         int V=sc.nextInt();
-        int[] v=new int[N];
-        int[] w=new int[N];
-        for(int i=0;i<N;i++){
+        int[] v=new int[N+1];
+        int[] w=new int[N+1];
+        for(int i=1;i<=N;i++){
             v[i]=sc.nextInt();
             w[i]=sc.nextInt();
         }
@@ -57,14 +57,14 @@ public class CompletePack {
          */
         int[][] dp1 = new int[N+1][V+1];
         for (int i=1; i<=N; i++){
-            for (int j = v[i-1]; j<=V; j++){
-                dp1[i][j] = Math.max(dp1[i-1][j], dp1[i][j-v[i-1]]+w[i-1]);
+            for (int j = v[i]; j<=V; j++){
+                dp1[i][j] = Math.max(dp1[i-1][j], dp1[i][j-v[i]]+w[i]);
             }
         }
         int[] dp2 = new int[V+1];
         for (int i=1; i<=N; i++){
-            for (int j = v[i-1]; j<=V; j++){
-                dp2[j] = Math.max(dp2[j], dp2[j-v[i-1]]+w[i-1]);
+            for (int j = v[i]; j<=V; j++){
+                dp2[j] = Math.max(dp2[j], dp2[j-v[i]]+w[i]);
             }
         }
         System.out.println(dp1[N][V]);
