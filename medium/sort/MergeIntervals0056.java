@@ -1,4 +1,4 @@
-package medium;
+package medium.sort;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
@@ -35,4 +35,7 @@ public class MergeIntervals0056 {
         }
         return result.toArray(new int[0][]);
     }
+
+
+
 }
