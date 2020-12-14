@@ -52,10 +52,13 @@ public class GroupAnagrams0049 {
             char[] ca = s.toCharArray();
             Arrays.sort(ca);
             String key = String.valueOf(ca);
-            if (!ans.containsKey(key)) {
-                ans.put(key, new ArrayList());
-            }
-            ans.get(key).add(s);
+            List<String> list = ans.getOrDefault(key, new ArrayList());
+            list.add(s);
+            ans.put(key, list);
+            //if (!ans.containsKey(key)) {
+            //    ans.put(key, new ArrayList());
+            //}
+            //ans.get(key).add(s);
         }
         return new ArrayList(ans.values());
     }
