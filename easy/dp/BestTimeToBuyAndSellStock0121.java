@@ -37,6 +37,8 @@ public class BestTimeToBuyAndSellStock0121 {
      * 一次遍历
      * 时间复杂度：O(n)，只需要遍历一次。
      * 空间复杂度：O(1)，只使用了常数个变量。
+     * 98.55%
+     * 91.80%
      * @param prices
      * @return
      */
@@ -44,14 +46,14 @@ public class BestTimeToBuyAndSellStock0121 {
         if (prices.length < 1) {
             return 0;
         }
-        int minPrice = prices[0];
+        int minPrice = Integer.MAX_VALUE;
         int maxProfit = 0;
-        for (int i=1; i<prices.length; i++) {
-            if ((prices[i]-minPrice)>maxProfit){
-                maxProfit = prices[i] - minPrice;
-            }
+        for (int i=0; i<prices.length; i++) {
             if (prices[i] < minPrice){
                 minPrice = prices[i];
+            }
+            else if (prices[i] - minPrice > maxProfit){
+                maxProfit = prices[i] - minPrice;
             }
         }
         return maxProfit;

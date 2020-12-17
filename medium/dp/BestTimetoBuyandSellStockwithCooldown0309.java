@@ -24,6 +24,7 @@ public class BestTimetoBuyandSellStockwithCooldown0309 {
         int[][] f = new int[n][3];
         f[0][0] = -prices[0];
         f[0][1] = Integer.MIN_VALUE;
+        f[0][2] = 0;
         for (int i = 1; i < n; ++i) {
             f[i][0] = Math.max(f[i - 1][0], f[i - 1][2] - prices[i]);
             f[i][1] = f[i - 1][0] + prices[i];

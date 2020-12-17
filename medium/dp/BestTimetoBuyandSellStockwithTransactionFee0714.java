@@ -16,6 +16,18 @@ public class BestTimetoBuyandSellStockwithTransactionFee0714 {
         for (int i=0; i<prices.length; i++){
             buy = Math.max(sell - prices[i], buy);
             sell = Math.max(buy + prices[i] - fee, sell);
+            /**
+             *  i-1     i(price = 2, fee = 1)
+             *  5       5
+             *  6
+             *  这种情况是i-1天的买入利益为5，卖出利益为6，此时i天的买入利益为i-1的值，对i天的卖不产生影响
+             *
+             *  i-1     i(price = 2, fee = 1)
+             *  3       5
+             *  6
+             *  这种情况是i-1天的买入利益为3，卖出利益为6，此时i天的买入利益为5，sell[i-1] - price[i], i天的卖出利益为 Math.max(sell[i-1] - price[i] + prices[i] - fee, sell[i-1]) = sell[i-1]
+             *  也就是说此时的buy[i]已经是大于buy[i-1]的值，但是最终的结果还是小于sell[i-1]，对结果不产生影响。
+             */
             //buy[i+1] = Math.max(sell[i] - prices[i], buy[i]);
             //sell[i+1] = Math.max(buy[i] + prices[i] - fee, sell[i]);
         }
