@@ -23,7 +23,7 @@ public class BestTimetoBuyandSellStockwithTransactionFee0714 {
              *  这种情况是i-1天的买入利益为5，卖出利益为6，此时i天的买入利益为i-1的值，对i天的卖不产生影响
              *
              *  i-1     i(price = 2, fee = 1)
-             *  3       5
+             *  3       4
              *  6
              *  这种情况是i-1天的买入利益为3，卖出利益为6，此时i天的买入利益为5，sell[i-1] - price[i], i天的卖出利益为 Math.max(sell[i-1] - price[i] + prices[i] - fee, sell[i-1]) = sell[i-1]
              *  也就是说此时的buy[i]已经是大于buy[i-1]的值，但是最终的结果还是小于sell[i-1]，对结果不产生影响。
@@ -32,6 +32,21 @@ public class BestTimetoBuyandSellStockwithTransactionFee0714 {
             //sell[i+1] = Math.max(buy[i] + prices[i] - fee, sell[i]);
         }
         return sell;
+    }
+
+    public int maxProfit2(int[] prices, int fee) {
+        int n = prices.length;
+        int buy = prices[0] + fee;
+        int profit = 0;
+        for (int i = 1; i < n; ++i) {
+            if (prices[i] + fee < buy) {
+                buy = prices[i] + fee;
+            } else if (prices[i] > buy) {
+                profit += prices[i] - buy;
+                buy = prices[i];
+            }
+        }
+        return profit;
     }
 
     public static void main(String[] args) {
