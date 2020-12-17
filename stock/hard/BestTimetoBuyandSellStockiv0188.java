@@ -1,4 +1,4 @@
-package hard;
+package stock.hard;
 
 /**
  * @author Alex

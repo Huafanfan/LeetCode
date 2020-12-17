@@ -1,4 +1,4 @@
-package medium.dp;
+package stock.medium;
 
 /**
  * @author Alex

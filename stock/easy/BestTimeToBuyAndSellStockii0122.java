@@ -1,4 +1,4 @@
-package easy.dp;
+package stock.easy;
 
 /**
  * @author Alex
