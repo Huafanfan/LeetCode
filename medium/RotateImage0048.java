@@ -8,7 +8,6 @@ package medium;
 public class RotateImage0048 {
     public void rotate(int[][] matrix) {
         int n = matrix.length;
-        // transpose matrix
         for (int i = 0; i < n; i++) {
             for (int j = i; j < n; j++) {
                 int tmp = matrix[j][i];
@@ -16,7 +15,6 @@ public class RotateImage0048 {
                 matrix[i][j] = tmp;
             }
         }
-        // reverse each row
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < n / 2; j++) {
                 int tmp = matrix[i][j];
@@ -25,4 +23,18 @@ public class RotateImage0048 {
             }
         }
     }
+
+    public void rotate2(int[][] matrix) {
+        int n = matrix.length;
+        for (int i = 0; i < n / 2; ++i) {
+            for (int j = 0; j < (n + 1) / 2; ++j) {
+                int temp = matrix[i][j];
+                matrix[i][j] = matrix[n - j - 1][i];
+                matrix[n - j - 1][i] = matrix[n - i - 1][n - j - 1];
+                matrix[n - i - 1][n - j - 1] = matrix[j][n - i - 1];
+                matrix[j][n - i - 1] = temp;
+            }
+        }
+    }
+
 }
