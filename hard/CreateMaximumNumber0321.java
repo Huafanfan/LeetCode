@@ -98,6 +98,7 @@ public class CreateMaximumNumber0321 {
             index1++;
             index2++;
         }
+        //都相同，谁短谁小
         return (x - index1) - (y - index2);
     }
 
