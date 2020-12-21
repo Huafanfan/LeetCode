@@ -31,6 +31,23 @@ public class MinCostClimbingStairs0746 {
         return Math.min(last, cur);
     }
 
+    /**
+     * 99.68%
+     * 95.79%
+     * @param cost
+     * @return
+     */
+    public int minCostClimbingStairs3(int[] cost) {
+        int prev = 0;
+        int cur = 0;
+        for (int i=2; i<=cost.length; i++){
+            int next = Math.min(cost[i-1 + cur], cost[i-2] + prev);
+            prev = cur;
+            cur = next;
+        }
+        return cur;
+    }
+
     public static void main(String[] args) {
         MinCostClimbingStairs0746 minCostClimbingStairs0746  = new MinCostClimbingStairs0746();
         int[] cost = new int[]{10,15,20};
