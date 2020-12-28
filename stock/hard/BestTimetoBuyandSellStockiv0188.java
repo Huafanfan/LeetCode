@@ -11,12 +11,17 @@ public class BestTimetoBuyandSellStockiv0188 {
             return 0;
         }
         int n = prices.length;
+        k = Math.min(k, n / 2);
         int[][][] dp = new int[n][k+1][2];
-        for (int i=0; i<=k; i++){
-            //第i天，第j轮，卖完后利益
-            dp[0][i][0] = 0;
+        //第0天，第0轮，卖完后利益
+        dp[0][0][0] = 0;
+        //第0天，第0轮，买入后利益
+        dp[0][0][1] = -prices[0];
+        for (int i=1; i<=k; i++){
+            //第i天，第j轮，卖完后利益 初始化为不合法的状态
+            dp[0][i][0] = Integer.MIN_VALUE / 2;
             //第i天，第j轮，买入后利益
-            dp[0][i][1] = -prices[0];
+            dp[0][i][1] = Integer.MIN_VALUE / 2;
         }
         for (int i=1; i<n; i++){
             dp[i][0][0] = dp[i-1][0][0];
