@@ -72,7 +72,7 @@ public class Lcof51 {
      * @return
      */
     private int reversePairs(int[] nums, int left, int right, int[] temp) {
-        if (left == right) {
+        if (left >= right) {
             return 0;
         }
 
