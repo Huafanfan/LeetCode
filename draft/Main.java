@@ -10,8 +10,33 @@ import java.util.concurrent.locks.ReentrantLock;
  */
 public class Main {
     public static void main(String[] args) throws InterruptedException {
-
+        Main main = new Main();
+        int[] a = new int[]{1,2,4,4,5};
+        System.out.println(main.upper_bound_(5, 4, a));
     }
+
+    public int upper_bound_ (int n, int v, int[] a) {
+        // write code here
+        int left = 0;
+        int right = n-1;
+        int mid = left + (right - left)/2;
+        while(left<right){
+            if(a[mid]>=v){
+                right = mid;
+            }
+            else{
+                left = mid + 1;
+            }
+            mid = left + (right - left)/2;
+        }
+        if(a[mid] == v){
+            return mid + 1;
+        }
+        else{
+            return n + 1;
+        }
+    }
+
     public int[] sortArrayInsert(int[] nums) {
         int n = nums.length;
         for (int i=0; i<n; i++){
