@@ -67,7 +67,7 @@ public class LongestPalindromicSubstring0005 {
             L--;
             R++;
         }
-        //R-L+1-2
+        //R-L+1-2 不包括最后的L 和 R
         return R - L - 1;
     }
 

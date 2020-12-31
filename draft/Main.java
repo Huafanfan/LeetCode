@@ -1,5 +1,6 @@
 package draft;
 
+import java.util.Arrays;
 import java.util.Random;
 import java.util.concurrent.locks.ReentrantLock;
 
@@ -11,8 +12,10 @@ import java.util.concurrent.locks.ReentrantLock;
 public class Main {
     public static void main(String[] args) throws InterruptedException {
         Main main = new Main();
-        int[] a = new int[]{1,2,4,4,5};
-        System.out.println(main.upper_bound_(5, 4, a));
+        int[] a = new int[]{1,3,5,2,2};
+        int k = 4;
+        main.quickSort(a, 0, a.length-1, k);
+        System.out.println(a[k-1]);
     }
 
     public int upper_bound_ (int n, int v, int[] a) {
@@ -59,7 +62,7 @@ public class Main {
     }
 
     public void mergeSort(int[] nums, int left, int right, int[] tmp){
-        if (left == right){
+        if (left >= right){
             return;
         }
         int mid = left + (right - left)/2;
@@ -104,6 +107,24 @@ public class Main {
         int index = partion(nums, left, right);
         quickSort(nums, left, index - 1);
         quickSort(nums, index + 1, right);
+    }
+
+    public void quickSort(int[] arr, int left, int right, int k){
+        if(left >= right){
+            return;
+        }
+        int index = partion(arr, left, right);
+        int count = index - left + 1;
+        if(count == k){
+            return;
+        }
+        else if(k<count){
+            quickSort(arr, left, index - 1, k);
+
+        }
+        else{
+            quickSort(arr, index + 1, right, k - count);
+        }
     }
 
     public int partion(int[] nums, int left, int right){
