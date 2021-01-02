@@ -16,6 +16,74 @@ public class Main {
         int k = 4;
         main.quickSort(a, 0, a.length-1, k);
         System.out.println(a[k-1]);
+        int[][] m = new int[][]{{1,3,5,9},{8,1,3,4},{5,0,6,1},{8,8,4,0}};
+        System.out.println(main.minPathSum(m));
+
+        ListNode node1 = new ListNode(1);
+        ListNode node2 = new ListNode(2);
+        ListNode node3 = new ListNode(3);
+        ListNode node4 = new ListNode(4);
+        ListNode node5 = new ListNode(5);
+        node1.next = node2;
+        node2.next = node3;
+        node3.next = node4;
+        node4.next = node5;
+
+        main.reverseBetween(node1, 2, 4);
+        System.out.println(node1);
+    }
+
+    public static class ListNode {
+        int val;
+        ListNode next = null;
+        ListNode(int _val){
+            val = _val;
+        }
+    }
+
+    public ListNode reverseBetween (ListNode head, int m, int n) {
+        // write code here
+        ListNode dummp = new ListNode(-1);
+        dummp.next = head;
+        ListNode newHead = dummp;
+        ListNode tail = dummp;
+        while(m>1){
+            newHead = newHead.next;
+            m--;
+        }
+        while(n>0){
+            tail = tail.next;
+            n--;
+        }
+        ListNode start = newHead.next;
+        newHead.next = null;
+
+        ListNode end = tail;
+        newHead.next = tail.next;
+        end.next = null;
+
+        while(start!=null){
+            ListNode tmp = start.next;
+            start.next = newHead.next;
+            newHead.next = start;
+            start = tmp;
+        }
+        return dummp.next;
+
+    }
+
+    public int minPathSum (int[][] matrix) {
+        // write code here
+        for(int i=1; i<matrix.length; i++){
+            matrix[0][i] += matrix[0][i-1];
+        }
+        for(int i=1; i<matrix.length; i++){
+            matrix[i][0] += matrix[i-1][0];
+            for(int j=1; j<matrix[0].length; j++){
+                matrix[i][j] += Math.min(matrix[i-1][j] , matrix[i][j-1]);
+            }
+        }
+        return matrix[matrix.length-1][matrix[0].length-1];
     }
 
     public int upper_bound_ (int n, int v, int[] a) {

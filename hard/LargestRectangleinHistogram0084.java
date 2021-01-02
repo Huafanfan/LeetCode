@@ -95,45 +95,44 @@ public class LargestRectangleinHistogram0084 {
         stack.addLast(0);
         for (int i=1; i<len; i++){
             while (heights[stack.peekLast()] > heights[i]){
-            //while (!stack.isEmpty() && heights[stack.peekLast()] > heights[i]){
                 int height = heights[stack.removeLast()];
-
-                //while (!stack.isEmpty() && heights[stack.peekLast()] == height){
-                //    stack.removeLast();
-                //}
-
                 int width = i - stack.peekLast() - 1;
-                //if (stack.isEmpty()){
-                //    width = i;
-                //}else {
-                //    width = i - stack.peekLast() - 1;
-                //}
                 area = Math.max(area, width * height);
             }
             stack.addLast(i);
         }
-        //while (!stack.isEmpty()){
-        //    int height = heights[stack.removeLast()];
-        //
-        //    while (!stack.isEmpty() && heights[stack.peekLast()] == height){
-        //        stack.removeLast();
-        //    }
-        //
-        //    int width;
-        //    if (stack.isEmpty()){
-        //        width = len;
-        //    }else {
-        //        width = len - stack.peekLast() - 1;
-        //    }
-        //    area = Math.max(area, width * height);
-        //}
+        return area;
+    }
 
+    public int largestRectangleArea4(int[] arr) {
+        int len = arr.length;
+        if(len == 0){
+            return 0;
+        }
+        if(len == 1){
+            return arr[0];
+        }
+        int area = 0;
+        int[] newArr = new int[len + 2];
+        for(int i=0; i<len; i++){
+            newArr[i+1] = arr[i];
+        }
+        Deque<Integer> stack = new ArrayDeque<>();
+        stack.offerLast(0);
+        for(int i=1; i<newArr.length; i++){
+            while(newArr[stack.peekLast()]>newArr[i]){
+                int height = newArr[stack.removeLast()];
+                int width = i - stack.peekLast() - 1;
+                area = Math.max(area, height * width);
+            }
+            stack.offerLast(i);
+        }
         return area;
     }
 
     public static void main(String[] args) {
-        int[] heights = new int[]{2,1,5,6,6,2,3};
+        int[] heights = new int[]{2,1,5,6,2,3};
         LargestRectangleinHistogram0084 largestRectangleinHistogram0084 = new LargestRectangleinHistogram0084();
-        System.out.println(largestRectangleinHistogram0084.largestRectangleArea3(heights));
+        System.out.println(largestRectangleinHistogram0084.largestRectangleArea4(heights));
     }
 }
