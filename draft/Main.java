@@ -1,7 +1,6 @@
 package draft;
 
-import java.util.Arrays;
-import java.util.Random;
+import java.util.*;
 import java.util.concurrent.locks.ReentrantLock;
 
 /**
@@ -11,11 +10,25 @@ import java.util.concurrent.locks.ReentrantLock;
  */
 public class Main {
     public static void main(String[] args) throws InterruptedException {
+        List<List<Integer>> tmp = new ArrayList<>();
+        Collections.sort(tmp, new Comparator<List<Integer>>() {
+            @Override
+            public int compare(List<Integer> o1, List<Integer> o2) {
+                return 0;
+            }
+        });
         Main main = new Main();
-        int[] a = new int[]{1,3,5,2,2};
+        Integer[] a = new Integer[]{1,3,5,2,2};
+        Arrays.sort(a, new Comparator<Integer>(){
+            @Override
+            public int compare(Integer arg0, Integer arg1) {
+                // TODO 自动生成的方法存根
+                return arg0 - arg1;
+            }
+        });
         int k = 4;
-        main.quickSort(a, 0, a.length-1, k);
-        System.out.println(a[k-1]);
+        //main.quickSort(a, 0, a.length-1, k);
+        //System.out.println(a[k-1]);
         int[][] m = new int[][]{{1,3,5,9},{8,1,3,4},{5,0,6,1},{8,8,4,0}};
         System.out.println(main.minPathSum(m));
 
@@ -230,7 +243,7 @@ public class Main {
 
     public void heapify(int[] nums){
         int len  = nums.length;
-        for (int i = (len-1)/2 ; i>=0; i++){
+        for (int i = (len-1)/2 ; i>=0; i--){
             siftDown(nums, i, len - 1);
         }
     }
