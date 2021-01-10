@@ -1,4 +1,4 @@
-package medium;
+package medium.array;
 
 import java.util.*;
 
@@ -6,29 +6,56 @@ import java.util.*;
  * @author Alex
  * @version 1.0
  * @date 2020/6/3 16:32
+ *
+ * Given a collection of candidate numbers (candidates) and a target number (target), find all unique combinations in candidates where the candidate numbers sums to target.
+ *
+ * Each number in candidates may only be used once in the combination.
+ *
+ * Note:
+ *
+ * All numbers (including target) will be positive integers.
+ * The solution set must not contain duplicate combinations.
+ * Example 1:
+ *
+ * Input: candidates = [10,1,2,7,6,1,5], target = 8,
+ * A solution set is:
+ * [
+ *   [1, 7],
+ *   [1, 2, 5],
+ *   [2, 6],
+ *   [1, 1, 6]
+ * ]
+ * Example 2:
+ *
+ * Input: candidates = [2,5,2,1,2], target = 5,
+ * A solution set is:
+ * [
+ *   [1,2,2],
+ *   [5]
+ * ]
  */
 public class CombinationSumii0040 {
-    public List<List<Integer>> combinationSum21(int[] candidates, int target) {
-        Set<List<Integer>> res = new HashSet<>();
-        int len = candidates.length;
-        Arrays.sort(candidates);
-        dfs(candidates, len, target, 0, new ArrayDeque<>(), res);
-        return new ArrayList<>(res);
-    }
-    void dfs(int[] candidates, int len, int residue, int start, Deque<Integer> path, Set<List<Integer>> res){
-        if (residue==0){
-            res.add(new ArrayList<>(path));
-            return;
-        }
-        for (int i=start; i<len ;i++){
-            if (residue-candidates[i]<0){
-                break;
-            }
-            path.addLast(candidates[i]);
-            dfs(candidates, len, residue-candidates[i], i+1, path, res);
-            path.removeLast();
-        }
-    }
+    //public List<List<Integer>> combinationSum21(int[] candidates, int target) {
+    //    Set<List<Integer>> res = new HashSet<>();
+    //    int len = candidates.length;
+    //    Arrays.sort(candidates);
+    //    dfs(candidates, len, target, 0, new ArrayDeque<>(), res);
+    //    return new ArrayList<>(res);
+    //}
+    //void dfs(int[] candidates, int len, int residue, int start, Deque<Integer> path, Set<List<Integer>> res){
+    //    if (residue==0){
+    //        res.add(new ArrayList<>(path));
+    //        return;
+    //    }
+    //    for (int i=start; i<len ;i++){
+    //        if (residue-candidates[i]<0){
+    //            break;
+    //        }
+    //        path.addLast(candidates[i]);
+    //        dfs(candidates, len, residue-candidates[i], i+1, path, res);
+    //        path.removeLast();
+    //    }
+    //}
 
 
     /**
@@ -39,7 +66,10 @@ public class CombinationSumii0040 {
      * @param path       从根结点到叶子结点的路径
      * @param res
      */
-    private void dfs(int[] candidates, int len, int begin, int residue, Deque<Integer> path, List<List<Integer>> res) {
+    private void dfs(int[] candidates, int len, int begin, int residue, List<Integer> path, List<List<Integer>> res) {
+        if (residue < 0){
+            return;
+        }
         if (residue == 0) {
             res.add(new ArrayList<>(path));
             return;
@@ -79,16 +109,16 @@ public class CombinationSumii0040 {
             //必须出现且只出现一个2，那么就放过第一个出现重复的2，但不放过后面出现的2。
             //第一个出现的2的特点就是 cur == begin. 第二个出现的2 特点是cur > begin.
 
-            path.addLast(candidates[i]);
+            path.add(candidates[i]);
 
             // 因为元素不可以重复使用，这里递归传递下去的是 i + 1 而不是 i
             dfs(candidates, len, i + 1, residue - candidates[i], path, res);
 
-            path.removeLast();
+            path.remove(path.size()-1);
         }
     }
 
-    public List<List<Integer>> combinationSum22(int[] candidates, int target) {
+    public List<List<Integer>> combinationSum2(int[] candidates, int target) {
         int len = candidates.length;
         List<List<Integer>> res = new ArrayList<>();
         if (len == 0) {
@@ -98,7 +128,7 @@ public class CombinationSumii0040 {
         // 先将数组排序，这一步很关键
         Arrays.sort(candidates);
 
-        Deque<Integer> path = new ArrayDeque<>(len);
+        List<Integer> path = new ArrayList<>(len);
         dfs(candidates, len, 0, target, path, res);
         return res;
     }
