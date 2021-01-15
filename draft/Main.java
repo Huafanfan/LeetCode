@@ -10,10 +10,17 @@ import java.util.concurrent.locks.ReentrantLock;
  */
 public class Main {
     public static void main(String[] args) throws InterruptedException {
-        List<List<Integer>> tmp = new ArrayList<>();
-        Collections.sort(tmp, new Comparator<List<Integer>>() {
+        //List<List<Integer>> tmp = new ArrayList<>();
+        //Collections.sort(tmp, new Comparator<List<Integer>>() {
+        //    @Override
+        //    public int compare(List<Integer> o1, List<Integer> o2) {
+        //        return 0;
+        //    }
+        //});
+        List<Integer> tmp = new ArrayList<>();
+        Collections.sort(tmp, new Comparator<Integer>() {
             @Override
-            public int compare(List<Integer> o1, List<Integer> o2) {
+            public int compare(Integer o1, Integer o2) {
                 return 0;
             }
         });
