@@ -1,4 +1,4 @@
-package medium;
+package medium.unionfind;
 
 import java.util.HashMap;
 import java.util.List;
@@ -56,6 +56,7 @@ public class SmallestStringWithSwaps1202 {
 
         private int[] parent;
         /**
+         * 按秩合并
          * 以 i 为根结点的子树的高度（引入了路径压缩以后该定义并不准确）
          */
         private int[] rank;

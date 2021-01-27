@@ -1,4 +1,4 @@
-package medium;
+package medium.unionfind;
 
 import java.util.HashMap;
 import java.util.Map;
