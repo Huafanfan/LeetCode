@@ -1,7 +1,4 @@
 package easy;
-
-import com.sun.org.apache.regexp.internal.RE;
-
 /**
  * @author Alex
  * @version 1.0

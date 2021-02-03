@@ -1,7 +1,5 @@
 package easy;
 
-import sun.tools.tree.NewArrayExpression;
-
 /**
  * @author Alex
  * @version 1.0

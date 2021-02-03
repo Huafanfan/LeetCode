@@ -8,7 +8,7 @@ import java.util.Map;
  * @version 1.0
  * @date 2021/1/15 10:19
  */
-public class MostStonesRemovedWithSameRoworColumn0904 {
+public class MostStonesRemovedWithSameRoworColumn0947 {
     public int removeStones(int[][] stones) {
         UnionFind unionFind = new UnionFind();
 
@@ -38,10 +38,12 @@ public class MostStonesRemovedWithSameRoworColumn0904 {
         public int find(int x) {
             if (!parent.containsKey(x)) {
                 parent.put(x, x);
+                // 每次如果在并查集中未发现元素，说明有一个新的连通分量，需要将连通分量+1
                 count++;
             }
 
             if (x != parent.get(x)) {
+                //路径压缩
                 parent.put(x, find(parent.get(x)));
             }
             return parent.get(x);
@@ -55,6 +57,7 @@ public class MostStonesRemovedWithSameRoworColumn0904 {
             }
 
             parent.put(rootX, rootY);
+            //合并一次，连通分量减少1
             count--;
         }
     }

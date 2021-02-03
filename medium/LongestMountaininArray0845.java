@@ -1,7 +1,4 @@
 package medium;
-
-import sun.jvm.hotspot.memory.Space;
-
 /**
  * @author Alex
  * @version 1.0

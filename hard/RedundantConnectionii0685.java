@@ -1,7 +1,4 @@
 package hard;
-
-import sun.jvm.hotspot.oops.Array;
-
 import java.util.Arrays;
 import java.util.Collections;
 
