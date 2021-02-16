@@ -3,24 +3,29 @@ package microsoft;
 /**
  * @author Alex
  * @version 1.0
- * @date 2021/2/14 17:48
+ * @date 2021/2/15 14:43
  */
-public class SearchInRotatedSortedArray0033 {
-    public int search(int[] nums, int target) {
+public class SearchInRotatedSortedArrayIi0081 {
+    public boolean search(int[] nums, int target) {
         int n = nums.length;
         if (n == 0) {
-            return -1;
+            return false;
         }
         if (n == 1) {
-            return nums[0] == target ? 0 : -1;
+            return nums[0] == target;
         }
         int l = 0, r = n - 1;
         while (l <= r) {
             int mid = l + (r - l) / 2;
             if (nums[mid] == target) {
-                return mid;
+                return true;
             }
-            if (nums[l] <= nums[mid]) {
+            // 11011这种情况
+            if (nums[l] == nums[mid]) {
+                l++;
+                continue;
+            }
+            if (nums[l] < nums[mid]) {
                 if (nums[l] <= target && target < nums[mid]) {
                     r = mid - 1;
                 } else {
@@ -34,6 +39,6 @@ public class SearchInRotatedSortedArray0033 {
                 }
             }
         }
-        return -1;
+        return false;
     }
 }
