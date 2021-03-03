@@ -1,3 +1,4 @@
 32. 最长有效括号 longest-valid-parentheses dp
 72. 编辑距离 edit-distance dp
 124. 二叉树中的最大路径和 binary-tree-maximum-path-sum dfs
+347. 前 K 个高频元素 top-k-frequent-elements
