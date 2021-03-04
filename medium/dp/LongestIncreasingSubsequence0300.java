@@ -11,7 +11,7 @@ public class LongestIncreasingSubsequence0300 {
         if (n <= 1) {
             return n;
         }
-        int[] dp = new int[nums.length + 1];
+        int[] dp = new int[nums.length];
         dp[0] = 1;
         int result = 0;
         for (int i=1; i<n; i++){
@@ -57,6 +57,6 @@ public class LongestIncreasingSubsequence0300 {
     public static void main(String[] args) {
         LongestIncreasingSubsequence0300 longestIncreasingSubsequence0300 = new LongestIncreasingSubsequence0300();
         int[] nums = new int[]{10,9,2,5,3,7,101,18};
-        System.out.println(longestIncreasingSubsequence0300.lengthOfLIS(nums));
+        System.out.println(longestIncreasingSubsequence0300.lengthOfLIS2(nums));
     }
 }
