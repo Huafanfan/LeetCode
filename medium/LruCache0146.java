@@ -9,13 +9,13 @@ import java.util.Map;
  * @date 2020/12/28 21:48
  */
 public class LruCache0146 {
-    class DLinkedNode {
-        int key;
-        int value;
+    class DLinkedNode<K, V> {
+        K key;
+        V value;
         DLinkedNode prev;
         DLinkedNode next;
         public DLinkedNode() {}
-        public DLinkedNode(int _key, int _value) {key = _key; value = _value;}
+        public DLinkedNode(K _key, V _value) {key = _key; value = _value;}
     }
 
     private Map<Integer, DLinkedNode> cache = new HashMap<Integer, DLinkedNode>();
@@ -39,7 +39,7 @@ public class LruCache0146 {
             return -1;
         }
         moveToHead(node);
-        return node.value;
+        return (int) node.value;
     }
 
     public void put(int key, int value) {
