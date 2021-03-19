@@ -24,6 +24,7 @@ public class Lcof11 {
                 left = mid + 1;
             }
             else {
+                //相等的情况需要单独考虑
                 right--;
             }
         }

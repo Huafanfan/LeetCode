@@ -87,6 +87,29 @@ public class Lcof07 {
         return root;
     }
 
+    public TreeNode buildTree3(int[] preorder, int[] inorder) {
+        if (preorder.length < 1){
+            return null;
+        }
+        Map<Integer, Integer> map = new HashMap<>();
+        for (int i=0; i<inorder.length; i++){
+            map.put(inorder[i], i);
+        }
+        return buildTree4(preorder, 0, preorder.length, inorder, 0, inorder.length, map);
+    }
+
+    public TreeNode buildTree4(int[] preorder,int pLeft, int pRight, int[] inorder, int iLeft, int iRight, Map<Integer, Integer> map){
+        if (pLeft > pRight){
+            return null;
+        }
+        TreeNode root = new TreeNode(preorder[pLeft]);
+        int rootIndex = map.get(preorder[pLeft]);
+        int leftSize = rootIndex - iLeft;
+        root.left = buildTree4(preorder, pLeft + 1, pLeft + leftSize, inorder, iLeft, rootIndex -1, map);
+        root.right =  buildTree4(preorder, pLeft + leftSize + 1, pRight, inorder, rootIndex+1, iRight, map);
+        return root;
+    }
+
     public static void main(String[] args) {
         Lcof07 lcof07 = new Lcof07();
         int[] preorder = new int[]{3,9,8,5,4,10,20,15,7};
