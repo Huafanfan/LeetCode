@@ -57,12 +57,16 @@ public class Lcof14I {
         }
         int b = n % 3, p = 1000000007;
         long rem = 1, x = 3;
-        for(int a = n / 3 - 1; a > 0; a /= 2) {
-            if(a % 2 == 1) {
-                rem = (rem * x) % p;
-            }
-            x = (x * x) % p;
+        int a = n / 3;
+        for (int i=1; i<a; i++){
+            rem = (rem * x) % p;
         }
+        //for(int a = n / 3 - 1; a > 0; a /= 2) {
+        //    if(a % 2 == 1) {
+        //        rem = (rem * x) % p;
+        //    }
+        //    x = (x * x) % p;
+        //}
         if(b == 0) {
             return (int)(rem * 3 % p);
         }
