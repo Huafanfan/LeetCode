@@ -38,44 +38,44 @@ package medium;
 //    }
 //}
 public class ImplementTriePrefixTree0208 {
-    private boolean isString =false;
-    private final ImplementTriePrefixTree0208[] next =new ImplementTriePrefixTree0208[26];
+    ImplementTriePrefixTree0208 []child = new ImplementTriePrefixTree0208[26];
+    boolean isEnd = false;
+    /** Initialize your data structure here. */
+    public ImplementTriePrefixTree0208() {
 
-    public ImplementTriePrefixTree0208(){}
-
-    public void insert(String word){//插入单词
-        ImplementTriePrefixTree0208 root=this;
-        char[] w =word.toCharArray();
-        for (char c : w) {
-            if (root.next[c - 'a'] == null) {
-                root.next[c - 'a'] = new ImplementTriePrefixTree0208();
-            }
-            root = root.next[c - 'a'];
-        }
-        root.isString =true;
     }
 
-    public boolean search(String word){//查找单词
-        ImplementTriePrefixTree0208 root=this;
-        char[] w =word.toCharArray();
-        for (char c : w) {
-            if (root.next[c - 'a'] == null) {
-                return false;
-            }
-            root = root.next[c - 'a'];
-        }
-        return root.isString;
+    /** Inserts a word into the trie. */
+    public void insert(String word) {
+        ImplementTriePrefixTree0208 t = find(word,true);
+        t.isEnd = true;
     }
 
-    public boolean startsWith(String prefix){//查找前缀
-        ImplementTriePrefixTree0208 root=this;
-        char[] p =prefix.toCharArray();
-        for (char c : p) {
-            if (root.next[c - 'a'] == null) {
-                return false;
+    /** Returns if the word is in the trie. */
+    public boolean search(String word) {
+        ImplementTriePrefixTree0208 t = find(word,false);
+        return t!=null && t.isEnd;
+    }
+
+    /** Returns if there is any word in the trie that starts with the given prefix. */
+    public boolean startsWith(String prefix) {
+        ImplementTriePrefixTree0208 t = find(prefix,false);
+        return t!=null;
+    }
+
+    private ImplementTriePrefixTree0208 find(String word, boolean insertMode){
+        ImplementTriePrefixTree0208 t = this;
+        for(int i = 0; i < word.length(); i++){
+            int index = word.charAt(i)-'a';
+            if(t.child[index]==null){
+                if(insertMode){
+                    t.child[index] = new ImplementTriePrefixTree0208();
+                }else{
+                    return null;
+                }
             }
-            root = root.next[c - 'a'];
+            t = t.child[index];
         }
-        return true;
+        return t;
     }
 }
