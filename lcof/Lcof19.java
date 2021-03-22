@@ -23,9 +23,11 @@ public class Lcof19 {
                         }
                     }
                     else {
+                        //不看
                         if (j>=2){
                             isMatch[i][j] |= isMatch[i][j-2];
                         }
+                        //看
                         if (i >= 1 && j >= 2 && (s.charAt(i - 1) == p.charAt(j - 2) || p.charAt(j - 2) == '.')) {
                             isMatch[i][j] |= isMatch[i - 1][j];
                         }

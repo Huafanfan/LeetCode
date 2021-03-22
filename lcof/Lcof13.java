@@ -30,7 +30,7 @@ public class Lcof13 {
             result++;
             isMeet[i][j] = true;
             dfs(i+1, j, m, n, k, isMeet);
-            dfs(i, j-1, m, n, k, isMeet);
+            dfs(i, j+1, m, n, k, isMeet);
         }
     }
 
