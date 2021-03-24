@@ -60,7 +60,7 @@ public class OneThreeTwoPattern0456 {
 
     public static void main(String[] args) {
         OneThreeTwoPattern0456 oneThreeTwoPattern0456 = new OneThreeTwoPattern0456();
-        int[] nums = new int[]{-1,3,2,0};
+        int[] nums = new int[]{-1,3,2};
         System.out.println(oneThreeTwoPattern0456.find132pattern2(nums));
     }
 }
