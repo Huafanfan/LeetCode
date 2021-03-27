@@ -14,32 +14,32 @@ public class Solution {
         Node next;
     }
 
-    public Double solution(Double num, int roundCount){
-        StringBuilder stringBuilder = new StringBuilder(String.valueOf(num));
-        StringBuilder res = new StringBuilder();
-        int odd = 0;
-        for (int i=0; i<stringBuilder.length();){
-            if (stringBuilder.charAt(i) != '.'){
-                res.append(stringBuilder.charAt(i));
-                odd = (((stringBuilder.charAt(i) - '0') & 1) == 0) ? odd-- : odd++;
-                i++;
-            }
-            else {
-                res.append(stringBuilder.charAt(i));
-                i++;
-                for (int j=0; j<roundCount - 1; j++){
-                    res.append(stringBuilder.charAt(i++));
-                }
-                if (odd > 0){
-                    res.append(stringBuilder.charAt(i++) - '0' + 1);
-                }
-                else {
-                    res.append(stringBuilder.charAt(i));
-                }
-            }
-        }
-
-    }
+//    public Double solution(Double num, int roundCount){
+//        StringBuilder stringBuilder = new StringBuilder(String.valueOf(num));
+//        StringBuilder res = new StringBuilder();
+//        int odd = 0;
+//        for (int i=0; i<stringBuilder.length();){
+//            if (stringBuilder.charAt(i) != '.'){
+//                res.append(stringBuilder.charAt(i));
+//                odd = (((stringBuilder.charAt(i) - '0') & 1) == 0) ? odd-- : odd++;
+//                i++;
+//            }
+//            else {
+//                res.append(stringBuilder.charAt(i));
+//                i++;
+//                for (int j=0; j<roundCount - 1; j++){
+//                    res.append(stringBuilder.charAt(i++));
+//                }
+//                if (odd > 0){
+//                    res.append(stringBuilder.charAt(i++) - '0' + 1);
+//                }
+//                else {
+//                    res.append(stringBuilder.charAt(i));
+//                }
+//            }
+//        }
+//
+//    }
 
     public static void main(String[] args) {
         //3.3435 => 3.344
