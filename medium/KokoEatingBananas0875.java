@@ -32,6 +32,7 @@ public class KokoEatingBananas0875 {
         int time = 0;
         for (int p : piles){
             //time += (p-1) / K + 1;
+            //一个时间段内只能吃一堆香蕉
             time += Math.ceil((double)p / K);
         }
         return time <= H;
