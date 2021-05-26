@@ -1,5 +1,8 @@
 package easy;
 
+/**
+ * @author alex
+ */
 public class HammingDistance0461 {
     public int hammingDistance(int x, int y) {
         int xor = x ^ y;
