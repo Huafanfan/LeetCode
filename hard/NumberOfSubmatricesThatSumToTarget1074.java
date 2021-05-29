@@ -51,7 +51,9 @@ public class NumberOfSubmatricesThatSumToTarget1074 {
             for (int j = 1; j <= m; j++) {
                 for (int p = 1; p <= i; p++) {
                     for (int q = 1; q <= j; q++) {
-                        if (sum[i][j] - sum[p - 1][j] - sum[i][q - 1] + sum[p - 1][q - 1] == t) ans++;
+                        if (sum[i][j] - sum[p - 1][j] - sum[i][q - 1] + sum[p - 1][q - 1] == t) {
+                            ans++;
+                        }
                     }
                 }
             }
