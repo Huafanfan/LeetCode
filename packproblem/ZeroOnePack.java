@@ -6,6 +6,7 @@ import java.util.Scanner;
  * @author Alex
  * @version 1.0
  * @date 2020/12/6 11:22
+ * @link https://hillzhang1999.gitee.io/2020/05/26/dong-tai-gui-hua-jing-dian-wen-ti-bei-bao-jiu-jiang-zheng-li/
  */
 public class ZeroOnePack {
     public static void main(String[] args) {
