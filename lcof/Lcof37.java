@@ -60,13 +60,13 @@ public class Lcof37 {
         deque.offerLast(root);
         while (!deque.isEmpty()) {
             TreeNode cur = deque.pollFirst();
-            if (!"null".equals(datas[index])){
+            if (index < datas.length && !"null".equals(datas[index])){
                 TreeNode left = new TreeNode(Integer.parseInt(datas[index]));
                 cur.left = left;
                 deque.offerLast(left);
             }
             index++;
-            if (!"null".equals(datas[index])){
+            if (index < datas.length && !"null".equals(datas[index])){
                 TreeNode right = new TreeNode(Integer.parseInt(datas[index]));
                 cur.right = right;
                 deque.offerLast(right);
@@ -89,6 +89,6 @@ public class Lcof37 {
         node3.left = node4;
         node3.right = node5;
 
-        System.out.println(lcof37.deserialize(lcof37.serialize(null)));
+        System.out.println(lcof37.serialize(lcof37.deserialize(lcof37.serialize(node1))));
     }
 }
