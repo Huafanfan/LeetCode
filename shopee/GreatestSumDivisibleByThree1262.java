@@ -1,4 +1,4 @@
-package medium;
+package shopee;
 
 public class GreatestSumDivisibleByThree1262 {
     public int maxSumDivThree(int[] nums) {
