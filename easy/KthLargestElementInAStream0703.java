@@ -1,5 +1,6 @@
 package easy;
 
+import java.util.Comparator;
 import java.util.PriorityQueue;
 
 /**
@@ -12,7 +13,12 @@ public class KthLargestElementInAStream0703 {
     int k;
     public KthLargestElementInAStream0703(int k, int[] nums) {
         this.k = k;
-        pq = new PriorityQueue<Integer>();
+        pq = new PriorityQueue<Integer>(new Comparator<Integer>() {
+            @Override
+            public int compare(Integer o1, Integer o2) {
+                return o1 - o2;
+            }
+        });
         for (int x : nums) {
             add(x);
         }

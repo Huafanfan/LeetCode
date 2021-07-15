@@ -1,4 +1,4 @@
-package com.huafanfan.medium;
+package medium;
 
 /**
  * @author Alex
@@ -21,9 +21,9 @@ public class SwapNodesInPairs0024 {
         if (head==null||head.next==null){
             return head;
         }
-        ListNode dommy = new ListNode(0);
-        dommy.next = head;
-        ListNode pre = dommy;
+        ListNode dummy = new ListNode(0);
+        dummy.next = head;
+        ListNode pre = dummy;
         ListNode first = head.next;
         ListNode second = head;
         while (first!=null){
@@ -31,13 +31,13 @@ public class SwapNodesInPairs0024 {
             second.next = first.next;
             first.next = second;
             if (second.next==null){
-                return dommy.next;
+                return dummy.next;
             }
             pre=second;
             second=second.next;
             first=second.next;
         }
-        return dommy.next;
+        return dummy.next;
     }
 
     /**

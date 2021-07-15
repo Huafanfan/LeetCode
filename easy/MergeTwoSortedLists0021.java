@@ -1,4 +1,4 @@
-package com.huafanfan.easy;
+package easy;
 
 /**
  * @author alex
@@ -36,8 +36,8 @@ public class MergeTwoSortedLists0021 {
 	 */
 
 	public ListNode mergeTwoLists_2(ListNode l1, ListNode l2) {
-		ListNode listNode = new ListNode(-1);
-		ListNode pre = listNode;
+		ListNode dummy = new ListNode(-1);
+		ListNode pre = dummy;
 		while (l1!=null&&l2!=null) {
 			if(l1.val<=l2.val) {
 				pre.next = l1;
@@ -57,7 +57,7 @@ public class MergeTwoSortedLists0021 {
 //		if(l2==null) {
 //			pre.next = l1;
 //		}
-		return listNode.next;
+		return dummy.next;
 	}
 }
 
