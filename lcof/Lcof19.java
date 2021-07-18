@@ -7,35 +7,37 @@ package lcof;
  */
 public class Lcof19 {
     public boolean isMatch(String s, String p) {
-        int n = s.length();
-        int m = p.length();
+        int m = s.length();
+        int n = p.length();
         //s 的前 i 个和 p 的前 j 个能否匹配
-        boolean[][] isMatch = new boolean[n+1][m+1];
-        for (int i=0; i<=n; i++){
-            for (int j=0; j<=m; j++){
-                if (j==0){
-                    isMatch[i][j] = (i == 0);
+        boolean[][] f = new boolean[m+1][n+1];
+        f[0][0] = true;
+        for (int i=0; i<=m; i++){
+            for (int j=1; j<=n; j++){
+                if (p.charAt(j-1) != '*'){
+                    if (isMatch(s, p, i, j)){
+                        f[i][j] = f[i-1][j-1];
+                    }
                 }
                 else {
-                    if (p.charAt(j-1) != '*'){
-                        if (i>0&&(s.charAt(i - 1)==p.charAt(j - 1)||p.charAt(j - 1) == '.')){
-                            isMatch[i][j] = isMatch[i-1][j-1];
-                        }
-                    }
-                    else {
-                        //不看
-                        if (j>=2){
-                            isMatch[i][j] |= isMatch[i][j-2];
-                        }
-                        //看
-                        if (i >= 1 && j >= 2 && (s.charAt(i - 1) == p.charAt(j - 2) || p.charAt(j - 2) == '.')) {
-                            isMatch[i][j] |= isMatch[i - 1][j];
-                        }
+                    f[i][j] = f[i][j-2];
+                    if (isMatch(s, p, i, j-1)){
+                        f[i][j] |= f[i-1][j];
                     }
                 }
             }
         }
-        return isMatch[n][m];
+        return f[m][n];
+    }
+
+    public boolean isMatch(String s, String p, int i, int j){
+        if (i==0){
+            return false;
+        }
+        if (p.charAt(j-1) == '.'){
+            return true;
+        }
+        return s.charAt(i - 1) == p.charAt(j - 1);
     }
 
     public static void main(String[] args) {
