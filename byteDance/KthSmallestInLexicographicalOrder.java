@@ -1,6 +1,6 @@
 package byteDance;
 
-public class KthSmallestInLexicographicalOrder0440 {
+public class KthSmallestInLexicographicalOrder {
     public int findKthNumber(int n, int k) {
         int index = 1;
         int prefix = 1;
