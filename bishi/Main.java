@@ -27,9 +27,6 @@ public class Main
         out.close();
     }
 
-    //public int minimumInitHealth(int[][] rooms, int[] startPoint, int[] endPoint) {
-    //    // write code here
-    //}
     public String compressString(String param) {
         //"shopeew"
         StringBuilder sb = new StringBuilder();
