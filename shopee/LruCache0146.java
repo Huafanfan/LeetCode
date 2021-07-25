@@ -54,9 +54,10 @@ public class LruCache0146 {
             ++size;
             if (size > capacity) {
                 // 如果超出容量，删除双向链表的尾部节点
-                DLinkedNode tail = removeTail();
+                DLinkedNode t = tail.prev;
+                removeNode(t);
                 // 删除哈希表中对应的项
-                cache.remove(tail.key);
+                cache.remove(t.key);
                 --size;
             }
         }
@@ -84,10 +85,10 @@ public class LruCache0146 {
         head.next = node;
     }
 
-    private DLinkedNode removeTail() {
-        DLinkedNode res = tail.prev;
-        removeNode(res);
-        return res;
-    }
+    //private DLinkedNode removeTail() {
+    //    DLinkedNode res = tail.prev;
+    //    removeNode(res);
+    //    return res;
+    //}
 
 }
