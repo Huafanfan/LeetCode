@@ -14,117 +14,68 @@ import java.util.*;
  */
 public class Main
 {
-
+    static Map<Integer, Boolean> memory = new HashMap<>();
     public static void main(String[] args)
     {
-        Main m = new Main();
+        Main main = new Main();
         InputReader in = new InputReader();
         PrintWriter out = new PrintWriter(System.out);
-        int[][] num = new int[][]{{-2,-3,3},{-5,-10,1},{10,30,-5}};
-        int[] start = new int[]{0,0};
-        int[] end = new int[]{2,2};
-        out.println(m.minimumInitHealth(num, start, end));
+        int s = in.nextInt();
+        for (int a=0; a<s; a++){
+            int m = in.nextInt();
+            int n = in.nextInt();
+            int [][] nums = new int[m][n];
+            int startX = 0, startY = 0;
+            for (int i=0; i<m; i++){
+                for (int j=0; j<n; j++){
+                    nums[i][j] = in.nextInt();
+                    if (nums[i][j] == 0){
+                        startX = i;
+                        startY = j;
+                    }
+                }
+            }
+
+            if (main.dfs(nums, startX, startY, 0)){
+                out.println("YES");
+            }
+            else {
+                out.println("NO");
+            }
+
+        }
         out.close();
     }
 
-    public String compressString(String param) {
-        //"shopeew"
-        StringBuilder sb = new StringBuilder();
-        char pre = param.charAt(0);
-        int count = 1;
-        for (int i=1; i<param.length(); i++){
-            char ch = param.charAt(i);
-            if (ch == pre){
-                count++;
-            }
-            else {
-                sb.append(pre);
-                if (count > 1){
-                    sb.append(count);
-                }
-                pre = ch;
-                count = 1;
-            }
+    public boolean dfs(int[][] nums, int x, int y, int time){
+        if (x < 0 || x == nums.length ||  y < 0 || y == nums[0].length || nums[x][y]  < time || !memory.getOrDefault(x + y * 100 + time, true)){
+            return false;
         }
-        sb.append(pre);
-        if (count > 1){
-            sb.append(count);
+        if (x == nums.length - 1 && y == nums[0].length - 1){
+            return true;
         }
-        return sb.toString();
-    }
-
-    public int petalsBreak(int[] petals) {
-        int count = 0;
-        for (int petal : petals) {
-            if (petal > 0){
-                count += ((petal >> 1) + (petal & 1));
-            }
+        int tmp = nums[x][y];
+        nums[x][y] = -1;
+        boolean res = false;
+        res = dfs(nums, x - 1, y, time + 1);
+        if (res){
+            return true;
         }
-        return count;
-    }
-
-    List<Integer> cost = new ArrayList<>();
-    public int minimumInitHealth(int[][] rooms, int[] startPoint, int[] endPoint) {
-        int[][] isUsed = new int[rooms.length][rooms[0].length];
-        isUsed[startPoint[0]][startPoint[1]] = 1;
-        List<String> path = new ArrayList<>();
-        path.add(startPoint[0] +" "+ startPoint[1]);
-        dfs(path, rooms, isUsed, startPoint[0], startPoint[1], rooms[startPoint[0]][startPoint[1]], endPoint[0], endPoint[1]);
-        Collections.sort(cost);
-        for (int i=0; i<cost.size(); i++){
-            if (cost.get(i) > 0){
-                if (i>1){
-                    return -cost.get(i-1) + 1;
-                }
-                else {
-                    return 0;
-                }
-            }
+        res = dfs(nums, x + 1, y, time + 1);
+        if (res){
+            return true;
         }
-        return 0;
-    }
-
-    public void dfs(List<String> path, int[][] rooms, int[][] isUsed, int x, int y, int health, int endx, int endy){
-        if (x == endx && y == endy){
-            cost.add(health);
-            return;
+        res = dfs(nums, x, y-1 , time+1);
+        if (res){
+            return true;
         }
-        if (x-1>=0 && isUsed[x-1][y] == 0){
-            isUsed[x-1][y] = 1;
-            health += rooms[x-1][y];
-            path.add((x-1)  + " " + y);
-            dfs(path, rooms, isUsed, x-1, y, health, endx, endy);
-            health -= rooms[x-1][y];
-            isUsed[x-1][y] = 0;
-            path.remove(path.size()-1);
+        res = dfs(nums, x, y+1 , time+1);
+        if (res){
+            return true;
         }
-        if (x+1<rooms.length && isUsed[x+1][y] == 0){
-            isUsed[x+1][y] = 1;
-            health += rooms[x+1][y];
-            path.add((x+1)  + " " + y);
-            dfs(path, rooms, isUsed, x+1, y, health, endx, endy);
-            health -= rooms[x+1][y];
-            isUsed[x+1][y] = 0;
-            path.remove(path.size()-1);
-        }
-        if (y-1>=0 && isUsed[x][y-1] == 0){
-            isUsed[x][y-1] = 1;
-            health += rooms[x][y-1];
-            path.add(x  + " " + (y-1));
-            dfs(path, rooms, isUsed, x, y-1, health, endx, endy);
-            health -= rooms[x][y-1];
-            isUsed[x][y-1] = 0;
-            path.remove(path.size()-1);
-        }
-        if (y+1<rooms[0].length && isUsed[x][y+1] == 0){
-            isUsed[x][y+1] = 1;
-            health += rooms[x][y+1];
-            path.add(x  + " " + (y+1));
-            dfs(path, rooms, isUsed, x, y+1, health, endx, endy);
-            health -= rooms[x][y+1];
-            isUsed[x][y+1] = 0;
-            path.remove(path.size()-1);
-        }
+        nums[x][y] = tmp;
+        memory.put(x + y * 100 + time, false);
+        return false;
     }
 }
 class InputReader

@@ -38,7 +38,7 @@ public class ShortestUnsortedContinuousSubarray0581 {
 
     public static void main(String[] args) {
         ShortestUnsortedContinuousSubarray0581 shortestUnsortedContinuousSubarray0581 = new ShortestUnsortedContinuousSubarray0581();
-        int[] arr = new int[]{1,2,3,4};
+        int[] arr = new int[]{2,6,4,8,10,9,15};
         System.out.println(shortestUnsortedContinuousSubarray0581.findUnsortedSubarray(arr));
     }
 }
