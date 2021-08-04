@@ -12,8 +12,8 @@ import java.util.stream.Collectors;
 public class ValidTriangleNumber0611 {
     public static void main(String[] args) {
         ValidTriangleNumber0611 validTriangleNumber0611 = new ValidTriangleNumber0611();
-        int[] nums = new int[]{-1, 0, 1, 2, -1, -4};
-        System.out.println(validTriangleNumber0611.threeSum(nums));
+        int[] nums = new int[]{0, 0, 2, 2, 3, 4};
+        System.out.println(validTriangleNumber0611.triangleNumberBinary(nums));
     }
     public int triangleNumber(int[] nums) {
         int result = 0;
