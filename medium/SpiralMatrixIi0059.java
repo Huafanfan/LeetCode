@@ -1,48 +1,32 @@
 package medium;
 
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 
 public class SpiralMatrixIi0059 {
-    enum STATU
-    {
-        One, Two, Three, Four;
-    };
     public int[][] generateMatrix(int n) {
         int[][] res = new int[n][n];
-        int cycle = 0;
-        int size = 1;
-        STATU status = STATU.One;
-        while (size <= n * n) {
-            switch (status) {
-                case One:
-                    for (int i = cycle; i < n - cycle; i++) {
-                        res[cycle][i] = size++;
-                    }
-                    status = STATU.Two;
-                    break;
-                case Two:
-                    for (int i = cycle + 1; i < n - cycle; i++) {
-                        res[i][n - 1 - cycle] = size++;
-                    }
-                    status = STATU.Three;
-                    break;
-                case Three:
-                    for (int i = n - 2 - cycle; i >= cycle; i--) {
-                        res[n - cycle - 1][i] = size++;
-                    }
-                    status = STATU.Four;
-                    break;
-                case Four:
-                    for (int i = n - 2 - cycle; i >= cycle + 1; i--) {
-                        res[i][cycle] = size++;
-                    }
-                    status = STATU.One;
-                    cycle++;
-                    break;
-                default:
+        int up = 0;
+        int down = n - 1;
+        int left = 0;
+        int right = n - 1;
+        int index = 1;
+        while (index <= n * n) {
+            for (int i=left; i<=right; i++){
+                res[up][i] = index++;
             }
+            up++;
+            for (int i=up; i<=down; i++){
+                res[i][right] = index++;
+            }
+            right--;
+            for (int i=right; i>=left; i--){
+                res[down][i] = index++;
+            }
+            down--;
+            for (int i=down; i>=up; i--){
+                res[i][left] = index++;
+            }
+            left++;
         }
         return res;
     }
