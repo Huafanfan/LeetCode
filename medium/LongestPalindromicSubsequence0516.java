@@ -6,7 +6,7 @@ package medium;
  * @date 2020/9/2 16:02
  */
 public class LongestPalindromicSubsequence0516 {
-    public int longestPalindromeSubseq(String s) {
+    public int longestPalindromeSubSeq(String s) {
         int n = s.length();
         int[][] dp = new int[n][n];
         for (int i=n-1; i>=0; i--){
