@@ -31,21 +31,15 @@ public class MinCostClimbingStairs0746 {
         return Math.min(last, cur);
     }
 
-    /**
-     * 99.68%
-     * 95.79%
-     * @param cost
-     * @return
-     */
     public int minCostClimbingStairs3(int[] cost) {
-        int prev = 0;
-        int cur = 0;
-        for (int i=2; i<=cost.length; i++){
-            int next = Math.min(cost[i-1 + cur], cost[i-2] + prev);
-            prev = cur;
-            cur = next;
+        int n = cost.length;
+        int prev = 0, curr = 0;
+        for (int i = 2; i <= n; i++) {
+            int next = Math.min(curr + cost[i - 1], prev + cost[i - 2]);
+            prev = curr;
+            curr = next;
         }
-        return cur;
+        return curr;
     }
 
     public static void main(String[] args) {
