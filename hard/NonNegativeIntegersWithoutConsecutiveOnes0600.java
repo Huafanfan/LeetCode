@@ -34,4 +34,9 @@ public class NonNegativeIntegersWithoutConsecutiveOnes0600 {
 
         return res;
     }
+
+    public static void main(String[] args) {
+        NonNegativeIntegersWithoutConsecutiveOnes0600 nonNegativeIntegersWithoutConsecutiveOnes0600 = new NonNegativeIntegersWithoutConsecutiveOnes0600();
+        System.out.println(nonNegativeIntegersWithoutConsecutiveOnes0600.findIntegers(6));
+    }
 }
