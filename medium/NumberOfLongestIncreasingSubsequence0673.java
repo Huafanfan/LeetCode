@@ -11,6 +11,8 @@ import java.util.List;
 public class NumberOfLongestIncreasingSubsequence0673 {
     public int findNumberOfLIS(int[] nums) {
         int n = nums.length, maxLen = 0, ans = 0;
+         // dp[i] 表示以 nums[i] 结尾的最长上升子序列的长度，
+        // cnt[i] 表示以 nums[i] 结尾的最长上升子序列的个数
         int[] dp = new int[n];
         int[] cnt = new int[n];
         for (int i = 0; i < n; ++i) {
