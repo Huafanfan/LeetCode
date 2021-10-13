@@ -1,4 +1,4 @@
-package com.huafanfan.medium;
+package medium;
 
 /**
  * @author Alex
