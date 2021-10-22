@@ -1,6 +1,7 @@
 package medium;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -65,4 +66,23 @@ public class MajorityElementii0229 {
 
         return result;
     }
+
+    public List<Integer> majorityElement2(int[] nums) {
+        HashMap<Integer, Integer> cnt = new HashMap<>();
+        for (int num : nums) {
+            if (cnt.containsKey(num)) {
+                cnt.put(num, cnt.get(num) + 1);
+            } else {
+                cnt.put(num, 1);
+            }
+        }
+        List<Integer> ans = new ArrayList<>();
+        for (int x : cnt.keySet()) {
+            if (cnt.get(x) > nums.length / 3) {
+                ans.add(x);
+            }
+        }
+        return ans;
+    }
+
 }
