@@ -1,8 +1,6 @@
 package medium;
 
-import java.util.ArrayDeque;
-import java.util.Arrays;
-import java.util.Deque;
+import java.util.*;
 
 /**
  * @author Alex
@@ -30,9 +28,22 @@ public class NextGreaterElementIi0503 {
         return res;
     }
 
+    public int[] nextGreaterElements2(int[] nums) {
+        Deque<Integer> stack = new LinkedList<>();
+        int[] res = new int[nums.length];
+        for (int i = 2 * nums.length-1; i >= 0 ; i--) {
+            while (!stack.isEmpty() && stack.peek() <= nums[i % nums.length]) {
+                stack.pop();
+            }
+            res[i % nums.length] = stack.isEmpty() ? -1 : stack.peek();
+            stack.push(nums[i % nums.length]);
+        }
+        return res;
+    }
+
     public static void main(String[] args) {
         int[] nums = new int[]{1,2,1};
         NextGreaterElementIi0503 nextGreaterElementIi0503 = new NextGreaterElementIi0503();
-        System.out.println(Arrays.toString(nextGreaterElementIi0503.nextGreaterElements(nums)));
+        System.out.println(Arrays.toString(nextGreaterElementIi0503.nextGreaterElements2(nums)));
     }
 }
