@@ -8,43 +8,65 @@ import java.util.*;
  * @date 2021/3/6 09:46
  */
 public class Solution {
+    static class Node{
+        int x,y,z;
+        int id;
+        public Node(int _x, int _y, int _z, int _id){
+            x = _x;
+            y = _y;
+            z = _z;
+            id = _id;
+        }
+        public int getX() {
+            return x;
+        }
+
+        public void setX(int x) {
+            this.x = x;
+        }
+
+        public int getY() {
+            return y;
+        }
+
+        public void setY(int y) {
+            this.y = y;
+        }
+
+        public int getZ() {
+            return z;
+        }
+
+        public void setZ(int z) {
+            this.z = z;
+        }
+
+        @Override
+        public String toString() {
+            return "Node{" +
+                    "x=" + x +
+                    ", y=" + y +
+                    ", z=" + z +
+                    ", id=" + id +
+                    '}';
+        }
+    }
     public static void main(String[] args) {
-        Map<Integer, List<Integer>> edge = new HashMap<>();
-        List<Integer> list = new ArrayList<>();
-        list.add(2);
-        list.add(6);
-        edge.put(1, new ArrayList<>(list));
-
-        list.clear();
-        list.add(1);
-        list.add(3);
-        edge.put(2, new ArrayList<>(list));
-
-        list.clear();
-        list.add(2);
-        list.add(6);
-        list.add(4);
-        edge.put(3, new ArrayList<>(list));
-
-        list.clear();
-        list.add(3);
-        list.add(5);
-        edge.put(4, new ArrayList<>(list));
-
-        list.clear();
-        list.add(4);
-        list.add(6);
-        edge.put(5, new ArrayList<>(list));
-
-        list.clear();
-        list.add(1);
-        list.add(3);
-        list.add(5);
-        edge.put(6, new ArrayList<>(list));
-
-        Solution solution = new Solution();
-        System.out.println(solution.func(6, edge));
-
+        Node[] list = new Node[5];
+        list[0] = new Node(1,1,1,3);
+        list[1] = new Node(1,1,1,2);
+        list[2] = new Node(2,1,3,1);
+        list[3] = new Node(1,1,1,4);
+        list[4] = new Node(2,1,3,5);
+        System.out.println(Arrays.toString(list));
+        for (int index = 0; index<list.length; index++){
+            for (int other = 0; other < index; other++){
+                if (list[index].x == list[other].x && list[index].y == list[other].y && list[index].z == list[other].z ){
+                    list[other].id = list[index].id;
+                }
+            }
+        }
+        System.out.println(Arrays.toString(list));
     }
 
     Set<Set<Integer>> mark = new HashSet<>();
