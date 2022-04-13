@@ -10,12 +10,13 @@ import java.util.*;
 public class InsertDeleteGetrandomO10380 {
     Map<Integer, Integer> dict;
     List<Integer> list;
-    Random rand = new Random();
+    Random rand;
 
     /** Initialize your data structure here. */
     public InsertDeleteGetrandomO10380() {
-        dict = new HashMap();
-        list = new ArrayList();
+        dict = new HashMap<>();
+        list = new ArrayList<>();
+        rand = new Random();
     }
 
     /** Inserts a value to the set. Returns true if the set did not already contain the specified element. */
@@ -46,6 +47,7 @@ public class InsertDeleteGetrandomO10380 {
 
     /** Get a random element from the set. */
     public int getRandom() {
-        return list.get(rand.nextInt(list.size()));
+        int randomIndex = rand.nextInt(list.size());
+        return list.get(randomIndex);
     }
 }
