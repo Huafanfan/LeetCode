@@ -19,12 +19,6 @@ public class DiStringMatch0942 {
             }
         }
         result[N] = minNum;
-        //if (S.charAt(S.length()-1) == 'I') {
-        //    result[S.length()] = minNum;
-        //}
-        //else {
-        //    result[S.length()] = maxNum;
-        //}
         return result;
     }
 }
