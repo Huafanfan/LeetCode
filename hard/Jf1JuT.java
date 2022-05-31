@@ -6,6 +6,7 @@ import java.util.*;
  * @author Alex
  * @version 1.0
  * @date 2022/5/31 10:12
+ * @url https://leetcode.cn/problems/Jf1JuT/
  */
 public class Jf1JuT {
     static final int VISITING = 1, VISITED = 2;
