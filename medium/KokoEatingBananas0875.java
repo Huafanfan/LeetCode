@@ -16,9 +16,12 @@ public class KokoEatingBananas0875 {
      */
     public int minEatingSpeed(int[] piles, int H) {
         int low = 1;
-        int hight = 1_000_000_000;
+        int hight = Integer.MIN_VALUE;
+        for (int pile : piles){
+            hight = Math.max(hight, pile);
+        }
         while (low < hight){
-            int middle = (low + hight)/2;
+            int middle = (low + hight) >> 1;
             if (!possible(piles,H,middle)){
                 low = middle + 1;
             }
@@ -33,7 +36,8 @@ public class KokoEatingBananas0875 {
         for (int p : piles){
             //time += (p-1) / K + 1;
             //一个时间段内只能吃一堆香蕉
-            time += Math.ceil((double)p / K);
+            time += (p + K -1)/K;
+            // time += Math.ceil((double)p / K);
         }
         return time <= H;
     }
