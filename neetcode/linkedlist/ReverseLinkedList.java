@@ -7,14 +7,14 @@ package neetcode.linkedlist;
  */
 public class ReverseLinkedList {
     public ListNode reverseList(ListNode head) {
-        ListNode dumb = new ListNode();
+        ListNode dummy = new ListNode();
         while (head != null){
             ListNode cur = head;
             head = head.next;
-            cur.next = dumb.next;
-            dumb.next = cur;
+            cur.next = dummy.next;
+            dummy.next = cur;
         }
-        return dumb.next;
+        return dummy.next;
     }
 
     public ListNode reverseList2(ListNode head) {

@@ -23,8 +23,8 @@ public class MergeTwoLinkedLists {
     }
 
     public ListNode mergeTwoLists2(ListNode list1, ListNode list2) {
-        ListNode dumb = new ListNode();
-        ListNode last = dumb;
+        ListNode dummy = new ListNode();
+        ListNode last = dummy;
         while (list1 != null || list2 != null){
             if (list1 == null){
                 last.next = list2;
@@ -42,6 +42,6 @@ public class MergeTwoLinkedLists {
             }
             last = last.next;
         }
-        return dumb.next;
+        return dummy.next;
     }
 }
