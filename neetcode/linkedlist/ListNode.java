@@ -6,8 +6,10 @@ package neetcode.linkedlist;
  * @date 2022/6/15 11:39
  */
 public class ListNode {
+    int key;
     int val;
     ListNode next;
+    ListNode last;
     ListNode() {}
     ListNode(int val) { this.val = val; }
     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
