@@ -13,41 +13,51 @@ import java.util.Scanner;
  */
 public class Main {
     /**
-     * 快速选择算法
+     * 快排 - 分治
+     * 确定分界点
+     * 调整区间
+     * 递归处理左右两段
      */
 
     public static void main(String[] args) throws IOException {
         Scanner in = new Scanner(new BufferedInputStream(System.in));
         int n = in.nextInt();
-        int k = in.nextInt();
-
         int[] nums = new int[n];
         for (int i=0; i<n; i++){
             nums[i] = in.nextInt();
         }
 
-        System.out.print(quickSort(nums, 0, n-1, k));
-    }
+        quickSort(nums, 0, n-1);
 
-    public static int quickSort(int[] nums, int l, int r, int k){
-        if (l == r) {
-            return nums[l];
+        for (int i=0; i<n; i++){
+            System.out.print(nums[i] + " ");
         }
-        int x = nums[l], i = l-1, j = r + 1;
+    }
+    public static void  quickSort(int[] nums, int left, int right){
+        if (left >= right){
+            return;
+        }
+        //i,j指向两侧，这里可以left，right或者（left+right）/ 2
+        int x = nums[left], i = left - 1, j = right + 1;
         while (i < j){
-            while (nums[++i] < x);
-            while (nums[--j] > x);
+            do {
+                i++;
+            }while (nums[i] < x);
+
+            do {
+                j--;
+            }while (nums[j] > x);
+
             if (i < j){
                 int tmp = nums[i];
                 nums[i] = nums[j];
                 nums[j] = tmp;
             }
         }
-        int sl = j - l + 1;
-        if (k <= sl){
-            return quickSort(nums, l, j, k);
-        } else {
-            return quickSort(nums, j+1, r, k-sl);
-        }
+        // 之前选left，这里就使用j，选right，就使用i，否则会有边界问题，死循环。
+        quickSort(nums, left, j);
+        quickSort(nums, j+1, right);
+//        quick_sort(nums, left, i-1);
+//        quick_sort(nums, i, right);
     }
 }
