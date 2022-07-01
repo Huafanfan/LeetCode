@@ -1,7 +1,5 @@
 package medium;
 
-import bishi.Solution;
-
 import java.util.Deque;
 import java.util.LinkedList;
 
