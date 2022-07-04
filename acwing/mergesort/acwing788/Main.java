@@ -1,4 +1,4 @@
-package acwing.acwing788;
+package acwing.mergesort.acwing788;
 
 import java.io.BufferedInputStream;
 import java.io.IOException;

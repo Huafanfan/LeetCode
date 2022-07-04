@@ -1,4 +1,4 @@
-package acwing.acwing786;
+package acwing.quicksort.acwing786;
 
 import java.io.BufferedInputStream;
 import java.io.IOException;

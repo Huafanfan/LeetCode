@@ -1,4 +1,4 @@
-package acwing.acwing790;
+package acwing.binary.acwing790;
 
 import java.io.BufferedInputStream;
 import java.util.Scanner;

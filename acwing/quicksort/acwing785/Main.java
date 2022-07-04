@@ -1,7 +1,5 @@
-package acwing.acwing785;
+package acwing.quicksort.acwing785;
 
-import java.io.BufferedInputStream;
-import java.io.IOException;
 import java.io.BufferedInputStream;
 import java.io.IOException;
 import java.util.Scanner;
