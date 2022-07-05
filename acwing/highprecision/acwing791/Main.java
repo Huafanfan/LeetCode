@@ -32,7 +32,7 @@ public class Main {
     public static List<Integer> add(List<Integer> A, List<Integer> B){
         List<Integer> C = new ArrayList<>();
         int carry = 0;
-        for (int i=0; i<A.size() || i<B.size(); i++){
+        for (int i=0; i<A.size() || i<B.size() || carry != 0; i++){
             if (i < A.size()){
                 carry += A.get(i);
             }
@@ -41,9 +41,6 @@ public class Main {
             }
             C.add(carry % 10);
             carry /= 10;
-        }
-        if (carry > 0){
-            C.add(carry);
         }
         return C;
     }
