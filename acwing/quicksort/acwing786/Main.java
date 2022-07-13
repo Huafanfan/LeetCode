@@ -33,8 +33,12 @@ public class Main {
         }
         int x = nums[l], i = l-1, j = r + 1;
         while (i < j){
-            while (nums[++i] < x);
-            while (nums[--j] > x);
+            while (nums[++i] < x) {
+                ;
+            }
+            while (nums[--j] > x) {
+                ;
+            }
             if (i < j){
                 int tmp = nums[i];
                 nums[i] = nums[j];
