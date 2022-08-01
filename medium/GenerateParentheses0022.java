@@ -1,4 +1,4 @@
-package com.huafanfan.medium;
+package medium;
 
 import java.util.ArrayList;
 import java.util.List;

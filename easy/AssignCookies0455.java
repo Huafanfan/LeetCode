@@ -1,4 +1,4 @@
-package com.huafanfan.easy;
+package easy;
 
 import java.util.Arrays;
 

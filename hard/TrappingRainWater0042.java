@@ -1,7 +1,5 @@
 package hard;
 
-import com.sun.org.apache.bcel.internal.generic.GOTO;
-
 import java.util.Deque;
 import java.util.LinkedList;
 

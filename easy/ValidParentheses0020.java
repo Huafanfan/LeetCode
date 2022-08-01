@@ -1,4 +1,4 @@
-package com.huafanfan.easy;
+package easy;
 
 import java.util.ArrayList;
 import java.util.HashMap;
