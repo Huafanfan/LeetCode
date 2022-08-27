@@ -58,10 +58,14 @@ public class MaximumWidthOfBinaryTree0662 {
         return ans;
     }
     void dfs(TreeNode root, int u, int depth) {
-        if (root == null) return ;
-        if (!map.containsKey(depth)) map.put(depth, u);
+        if (root == null) {
+            return ;
+        }
+        if (!map.containsKey(depth)) {
+            map.put(depth, u);
+        }
         ans = Math.max(ans, u - map.get(depth) + 1);
-        u = u - map.get(depth) + 1;
+//        u = u - map.get(depth) + 1;
         dfs(root.left, u << 1, depth + 1);
         dfs(root.right, u << 1 | 1, depth + 1);
     }

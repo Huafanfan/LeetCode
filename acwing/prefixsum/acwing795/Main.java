@@ -11,6 +11,7 @@ import java.util.Scanner;
  * @date 2022/7/5 17:08
  */
 public class Main {
+    // 前缀和 下表一定从1开始
     public static void main(String[] args) {
         Scanner in = new Scanner(new BufferedInputStream(System.in));
         int n = in.nextInt();
