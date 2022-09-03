@@ -21,16 +21,18 @@ public class Main {
     }
 
     static void addToHead(int x){
+        e[idx] = x;
+
         ne[idx] = head;
         head = idx;
-        e[idx] = x;
         idx++;
     }
 
     static void add(int k, int x){
+        e[idx] = x;
+
         ne[idx] = ne[k];
         ne[k] = idx;
-        e[idx] = x;
         idx++;
     }
 

@@ -1,4 +1,4 @@
-package acwing.datastructure.acwing827.doublelist;
+package acwing.datastructure.doublelist.acwing827;
 
 import java.io.BufferedInputStream;
 import java.util.Scanner;
@@ -26,6 +26,7 @@ public class Main {
      */
     static void add(int k ,int x){
         e[idx] = x;
+
         r[idx] = r[k];
         l[idx] = k;
         l[r[k]] = idx;
@@ -40,14 +41,6 @@ public class Main {
         r[l[k]] = r[k];
         l[r[k]] = l[k];
     }
-
-//    static void add_left(int x){
-//        e[idx] = x;
-//        r[idx] = r[0];
-//        l[idx] = 0;
-//        l[r[0]] = idx;
-//        r[0] = idx;
-//    }
 
     public static void main(String[] args) {
         init();
