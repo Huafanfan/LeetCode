@@ -25,6 +25,7 @@ public class Main {
                 g[i][j] = '.';
             }
         }
+        dfs(0);
         dfs(0, 0, 0);
     }
     static void dfs(int u){
