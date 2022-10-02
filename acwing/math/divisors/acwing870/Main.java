@@ -8,20 +8,6 @@ import java.util.*;
  * @date 2022/10/1 17:05
  */
 public class Main {
-    static List<Integer> getDivisors(int n){
-        List<Integer> res = new ArrayList<>();
-        for (int i=1; i <= n / i; i++){
-            if (n % i == 0){
-                res.add(i);
-                if (i != n/i){
-                    res.add(n/i);
-                }
-            }
-        }
-        Collections.sort(res);
-        return res;
-    }
-
     public static void main(String[] args) {
         Scanner in = new Scanner(new BufferedInputStream(System.in));
         int n = in.nextInt();
