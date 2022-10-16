@@ -1,4 +1,4 @@
-package acwing.dynamicprogramming.lineardp.acwing903;
+package acwing.dynamicprogramming.lineardp.acwing902;
 
 import java.io.BufferedInputStream;
 import java.util.Scanner;
