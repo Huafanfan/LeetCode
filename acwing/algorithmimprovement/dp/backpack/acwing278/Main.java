@@ -1,24 +1,25 @@
-package acwing.algorithmimprovement.dp.backpack.acwing1024;
+package acwing.algorithmimprovement.dp.backpack.acwing278;
 
 import java.io.BufferedInputStream;
 import java.util.Scanner;
 
 /**
  * @author yifan.zhangyf
- * @date 2022/11/6 18:08
+ * @date 2022/11/12 16:07
  */
 public class Main {
     public static void main(String[] args) {
         Scanner in = new Scanner(new BufferedInputStream(System.in));
-        int m = in.nextInt();
         int n = in.nextInt();
+        int m = in.nextInt();
         int[] f = new int[m+1];
-        for (int i=0; i<n; i++){
+        f[0] = 1;
+        while (n-- != 0){
             int v = in.nextInt();
             for (int j = m; j>=v; j--){
-                f[j] = Math.max(f[j], f[j-v] + v);
+                f[j] += f[j-v];
             }
         }
-        System.out.println(m - f[m]);
+        System.out.println(f[m]);
     }
 }
