@@ -51,7 +51,7 @@ public class Main {
                 j = ne[j];
             }
         }
-        System.out.println(sb.toString());
+        System.out.println(sb);
 
     }
 }

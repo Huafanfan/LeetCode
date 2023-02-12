@@ -18,7 +18,7 @@ public class Main {
         for (int i=1; i<=n; i++){
             a[i] = in.nextInt();
             // 这里就是在构造b，a是b的前缀和，insert函数表示相对a数组的某个区间加上某个数。初始化a的所有数为0，每对a赋一个值，
-            // 就相当于对于对当前i-i区间加上a的值
+            // 就相当于对当前i-i区间加上a的值
             insert(i, i, a[i]);
         }
         while (m-- > 0){
